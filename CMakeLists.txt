@@ -101,6 +101,8 @@ qt_add_qml_module(ApplicantStatsProject
         src/qml-gui/components/CustomComboBox.qml
 
         src/qml-gui/windows/NewTableSetter.qml
+        SOURCES src/utils/logger.h
+        SOURCES src/utils/logger.cpp
 )
 
 target_link_libraries(ApplicantStatsProject PRIVATE

@@ -18,6 +18,7 @@ public:
     static const QString appRootDataPath;
     static const QString appDataPath;
     static const QString appCachePath;
+    static const QString appLogsPath;
     static const QString downloadPath;
 };
 

@@ -20,6 +20,10 @@ const QString AppPathsManager::appCachePath
     = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)
       + "/Applicants-Stats-Project/cache";
 
+const QString AppPathsManager::appLogsPath
+    = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)
+      + "/Applicants-Stats-Project/logs";
+
 const QString AppPathsManager::downloadPath
     = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
 
@@ -37,6 +41,9 @@ void AppPathsManager::init() {
 
     if (!QDir().exists(AppPathsManager::appDataPath))
         result *= QDir().mkdir(appDataPath);
+
+    if(!QDir().exists(AppPathsManager::appLogsPath))
+	    result *= QDir().mkdir(AppPathsManager::appLogsPath);
 
     if (!result)
         qDebug() << "AppPathsManager INIT ERROR";

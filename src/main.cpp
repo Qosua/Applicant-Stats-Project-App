@@ -17,10 +17,11 @@
 #include "utils/app-paths-manager.h"
 #include "utils/database-manager.h"
 #include "utils/qml-helper.h"
+#include "utils/logger.h"
 #include "utils/scripts.h"
 
 void connectSignals(QmlHelper& qmlHelper, CacheManager& cacheManager, TreeViewModel& treeViewModel,
-                    StatsPageModel& statsPageModel) {
+		    StatsPageModel& statsPageModel) {
 
     QObject::connect(&qmlHelper, &QmlHelper::sendSignalToProceedTable, &cacheManager,
                      &CacheManager::processTable);
@@ -29,7 +30,9 @@ void connectSignals(QmlHelper& qmlHelper, CacheManager& cacheManager, TreeViewMo
                      &TreeViewModel::setFaculties);
 
     QObject::connect(&cacheManager, &CacheManager::sendProceededData, &statsPageModel,
-                     &StatsPageModel::setFaculties);
+		     &StatsPageModel::setFaculties);
+
+
 }
 
 void moveToThread(QThread& thread, CacheManager& cacheManager) {
@@ -42,6 +45,11 @@ int main(int argc, char* argv[]) {
 
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
+
+//log system-------------------------------------
+    Logger::initLog();
+    qInstallMessageHandler(Logger::logHandler);
+//-----------------------------------------------
 
     QApplication app(argc, argv);
 

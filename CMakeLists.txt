@@ -36,6 +36,7 @@ add_executable(ApplicantStatsProject
         src/utils/qml-helper.h
         src/utils/database-manager.h
         src/utils/scripts.h
+        src/utils/logger.h
 
         src/qml-modules/window-manager.h
 
@@ -59,6 +60,7 @@ add_executable(ApplicantStatsProject
         src/utils/app-paths-manager.cpp
         src/utils/qml-helper.cpp
         src/utils/database-manager.cpp
+        src/utils/logger.cpp
 
         src/qml-modules/window-manager.cpp
 
@@ -101,6 +103,7 @@ qt_add_qml_module(ApplicantStatsProject
         src/qml-gui/components/CustomComboBox.qml
 
         src/qml-gui/windows/NewTableSetter.qml
+
 )
 
 target_link_libraries(ApplicantStatsProject PRIVATE

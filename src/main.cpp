@@ -47,8 +47,6 @@ int main(int argc, char* argv[]) {
     SetConsoleOutputCP(1251);
 
 //log system-------------------------------------
-    Logger logger;
-
     Logger::initLog();
     qInstallMessageHandler(Logger::logHandler);
 //-----------------------------------------------

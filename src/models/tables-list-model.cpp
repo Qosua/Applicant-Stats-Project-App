@@ -14,13 +14,14 @@ TablesListModel::TablesListModel(QObject *parent) : QAbstractListModel(parent) {
 
 TablesListModel::~TablesListModel() {}
 
-void TablesListModel::setNewCurrentIndex(const int& indexInArray, const int &entryCommisionIndex) {
+void TablesListModel::setNewCurrentIndex(const int &indexInArray, const int &entryCommisionIndex) {
 
     if (indexInArray >= m_tables.size() or indexInArray < 0)
-        return;
+	return;
 
-    qDebug() << Q_FUNC_INFO << m_tables[indexInArray].m_tableName << entryCommisionIndex;
-    DataBaseManager::instance().changeEntryCommissionsIndexForTable(m_tables[indexInArray].m_tableName, entryCommisionIndex);
+    qDebug() << m_tables[indexInArray].m_tableName << entryCommisionIndex;
+    DataBaseManager::instance().changeEntryCommissionsIndexForTable(
+        m_tables[indexInArray].m_tableName, entryCommisionIndex);
 }
 
 int TablesListModel::rowCount(const QModelIndex &parent) const {
@@ -48,13 +49,13 @@ QVariant TablesListModel::data(const QModelIndex &index, int role) const {
 	    break;
 	case TablesListRoles::tableLastChangeDateRole:
 	    return table.m_tableLastChangeDate;
-            break;
-        case TablesListRoles::entryCommisionIdRole:
-            return table.m_entryCommisionId;
-            break;
-        case TablesListRoles::indexInArrayRole:
-            return table.m_indexInArray;
-            break;
+	    break;
+	case TablesListRoles::entryCommisionIdRole:
+	    return table.m_entryCommisionId;
+	    break;
+	case TablesListRoles::indexInArrayRole:
+	    return table.m_indexInArray;
+	    break;
 	default:
 	    return QVariant();
 	    break;
@@ -88,8 +89,7 @@ void TablesListModel::updateWatcher(const QString &changedPath) {
 
 	QString fullPath = dataDir.absoluteFilePath(file);
 
-	if (!fullPath.contains('~') and
-	    !fullPath.endsWith(".tmp"))
+	if (!fullPath.contains('~') and !fullPath.endsWith(".tmp"))
 	    m_watcher->addPath(fullPath);
     }
 
@@ -103,25 +103,22 @@ void TablesListModel::updateWatcher(const QString &changedPath) {
 
     int suitableTables = 0;
     for (const QString &tableName : currentFiles) {
-        if (DataBaseManager::instance().getEntryCommissionsIndexForTable(tableName) == -1)
-            continue;
-        suitableTables += 1;
+	if (DataBaseManager::instance().getEntryCommissionsIndexForTable(tableName) == -1)
+	    continue;
+	suitableTables += 1;
     }
 
     beginInsertRows(QModelIndex(), 0, suitableTables - 1);
     for (const QString &tableName : currentFiles) {
 
-        int entryCommisionID = DataBaseManager::instance().getEntryCommissionsIndexForTable(tableName);
-        if (entryCommisionID == -1)
-            continue;
+	int entryCommisionID
+	    = DataBaseManager::instance().getEntryCommissionsIndexForTable(tableName);
+	if (entryCommisionID == -1)
+	    continue;
 
-        m_tables.append(TableData(tableName,
-                                    dataDir.absoluteFilePath(tableName),
-                                    "qrc:/resources/icons/excel-icon.png",
-                                    tableLastChangeDate(tableName),
-                                    entryCommisionID,
-                                    m_tables.size()
-                                ));
+	m_tables.append(TableData(
+	    tableName, dataDir.absoluteFilePath(tableName), "qrc:/resources/icons/excel-icon.png",
+	    tableLastChangeDate(tableName), entryCommisionID, m_tables.size()));
     }
     endInsertRows();
 }

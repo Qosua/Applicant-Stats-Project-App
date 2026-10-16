@@ -32,6 +32,7 @@ signals:
     void progressChanged(const double&);
     void processChanged(const QString&);
     void message(const QString&);
+    void processEnded(const QString&); //передаётся имя завершённого процесса
 };
 
 #endif  // PROGRESS_HANDLER_H

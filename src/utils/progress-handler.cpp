@@ -2,18 +2,18 @@
 
 ProgressHandler::ProgressHandler(QObject* parent) : QObject{parent} {}
 
-void ProgressHandler::addProgressValue(const double& value) {
-    processProgress += value;
-    if (processProgress > 1)
-	processProgress = 1;
-
-    emit progressChanged(processProgress);
+void ProgressHandler::addProgressValue(const double& value)
+{
+    setProgress(getProgress() + value);
 }
 
 void ProgressHandler::setProgress(const double& newProgress) {
     processProgress = newProgress;
     if (processProgress > 1)
-	processProgress = 1;
+    {
+	    processProgress = 1;
+	    emit processEnded(currentProcessName);
+    }
 
     emit progressChanged(processProgress);
 }

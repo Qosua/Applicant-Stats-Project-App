@@ -6,12 +6,11 @@
 class ProgressHandler : public QObject {
     Q_OBJECT
 
-    Q_PROPERTY(QString progress READ getProgress CONSTANT)
+    Q_PROPERTY(double progress READ getProgress CONSTANT)
     Q_PROPERTY(QString processName READ getProcessName CONSTANT)
-    Q_PROPERTY(QString processMessage READ getProgressMessage CONSTANT)
+    Q_PROPERTY(QString processMessage READ getProcessMessage CONSTANT)
 
-
-    double processProgress    = 0.0;        // in [0,1]
+    double processProgress = 0.0;  // in [0,1]
     QString currentProcessName;
     QString currentProcessMessage;
 
@@ -26,14 +25,13 @@ public:
     void setProcessName(const QString& name);
     void setProcessMessage(const QString& message);
 
-    QString getProcessName()    const;
+    QString getProcessName() const;
     QString getProcessMessage() const;
 
 signals:
     void progressChanged(const double&);
     void processChanged(const QString&);
     void message(const QString&);
-
 };
 
 #endif  // PROGRESS_HANDLER_H

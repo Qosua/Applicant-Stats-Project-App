@@ -103,6 +103,7 @@ qt_add_qml_module(ApplicantStatsProject
         src/qml-gui/components/CustomComboBox.qml
 
         src/qml-gui/windows/NewTableSetter.qml
+        SOURCES src/utils/progress-handler.h src/utils/progress-handler.cpp
 
 )
 

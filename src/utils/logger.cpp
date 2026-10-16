@@ -15,7 +15,7 @@ void Logger::initLog() {
     logFile.open(QIODevice::ReadOnly | QIODevice::Append | QIODevice::Text);
 
     stream.setDevice(&logFile);
-    stream << "[" + QTime::currentTime().toString() + "] " << "SESSION SATRTED" << "\n";
+    stream << "[" + QTime::currentTime().toString() + "] " << "SESSION STARTED" << "\n";
 }
 
 void Logger::logHandler(QtMsgType type, const QMessageLogContext& context, const QString& text) {

@@ -18,7 +18,5 @@
         <file>resources/icons/plus.png</file>
         <file>resources/icons/angle-down.png</file>
         <file>resources/icons/angle-up.png</file>
-        <file>config/KCP.xlsx</file>
-        <file>config/columnsNames.xlsx</file>
     </qresource>
 </RCC>

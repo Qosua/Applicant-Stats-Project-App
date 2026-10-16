@@ -145,7 +145,7 @@ bool PriorityInfo::operator<(const PriorityInfo &copy) const {
 		    return true;
 		else if (m_subjectScores[1] == copy.m_subjectScores[1]) {
 
-		    if (m_subjectScores[2] < copy.m_subjectScores[2])
+		    if (m_subjectScores[2] <= copy.m_subjectScores[2])
 			return true;
 		    else if (m_subjectScores[2] == copy.m_subjectScores[2]) {
 

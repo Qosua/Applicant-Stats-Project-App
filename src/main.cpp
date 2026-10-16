@@ -18,6 +18,7 @@
 #include "utils/database-manager.h"
 #include "utils/qml-helper.h"
 #include "utils/logger.h"
+#include "utils/progress-handler.h"
 #include "utils/scripts.h"
 
 void connectSignals(QmlHelper& qmlHelper, CacheManager& cacheManager, TreeViewModel& treeViewModel,
@@ -32,7 +33,7 @@ void connectSignals(QmlHelper& qmlHelper, CacheManager& cacheManager, TreeViewMo
     QObject::connect(&cacheManager, &CacheManager::sendProceededData, &statsPageModel,
 		     &StatsPageModel::setFaculties);
 
-
+    //todo прописть подключение фронта к сигналам от ProgressHandler
 }
 
 void moveToThread(QThread& thread, CacheManager& cacheManager) {
@@ -63,6 +64,7 @@ int main(int argc, char* argv[]) {
     TablesListModel tablesListModel;
     QSortFilterProxyModel proxyModel;
     QmlHelper qmlHelper;
+    ProgressHandler progressHandler;
     TreeViewModel treeViewModel;
     StatsPageModel statsPageModel;
     EntryCommisionsListModel entryModel;
@@ -81,6 +83,7 @@ int main(int argc, char* argv[]) {
     engine.rootContext()->setContextProperty("sortFilterProxyModel", &proxyModel);
     engine.rootContext()->setContextProperty("tablesListModel", &tablesListModel);
     engine.rootContext()->setContextProperty("qmlHelper", &qmlHelper);
+    engine.rootContext()->setContextProperty("progressHandler", &progressHandler);
     engine.rootContext()->setContextProperty("windowManager", &WindowManager::instance());
     engine.rootContext()->setContextProperty("treeViewModel", &treeViewModel);
     engine.rootContext()->setContextProperty("statsPageModel", &statsPageModel);
@@ -93,6 +96,7 @@ int main(int argc, char* argv[]) {
 
     cacheThread.quit();
     cacheThread.wait();
+
 
     return ret;
 }

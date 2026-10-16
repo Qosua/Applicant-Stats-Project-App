@@ -37,6 +37,7 @@ add_executable(ApplicantStatsProject
         src/utils/database-manager.h
         src/utils/scripts.h
         src/utils/logger.h
+        src/utils/progress-handler.h
 
         src/qml-modules/window-manager.h
 
@@ -61,6 +62,7 @@ add_executable(ApplicantStatsProject
         src/utils/qml-helper.cpp
         src/utils/database-manager.cpp
         src/utils/logger.cpp
+        src/utils/progress-handler.cpp
 
         src/qml-modules/window-manager.cpp
 

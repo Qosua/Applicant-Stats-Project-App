@@ -15,6 +15,8 @@
 #include "utils/database-manager.h"
 #include "utils/qml-helper.h"
 #include "utils/logger.h"
+#include "utils/progress-handler.h"
+#include "utils/scripts.h"
 
 /// Метод нужен просто для компактности кода
 ///
@@ -40,6 +42,7 @@ void connectSignals(QmlHelper& qmlHelper, CacheManager& cacheManager, TreeViewMo
     // Результат устанавливается в модель страниц статистики
     QObject::connect(&cacheManager, &CacheManager::sendProceededData, &statsPageModel,
 		     &StatsPageModel::setFaculties);
+
 
 }
 
@@ -78,6 +81,7 @@ int main(int argc, char* argv[]) {
     TreeViewModel            treeViewModel;   // модель древесного представления иерархии факультетов и направлений для qml
     StatsPageModel           statsPageModel;  // модель страниц статистики
     EntryCommisionsListModel entryModel;      // модель списка доступных правил приёма (приёмных коммисий)
+    ProgressHandler          progressHandler; // контролер состояния прогресс бара
 
     qmlHelper.setAppVersion("1.0.0");
 
@@ -96,6 +100,7 @@ int main(int argc, char* argv[]) {
     engine.rootContext()->setContextProperty("sortFilterProxyModel", &proxyModel);
     engine.rootContext()->setContextProperty("tablesListModel", &tablesListModel);
     engine.rootContext()->setContextProperty("qmlHelper", &qmlHelper);
+    engine.rootContext()->setContextProperty("progressHandler", &progressHandler);
     engine.rootContext()->setContextProperty("windowManager", &WindowManager::instance());
     engine.rootContext()->setContextProperty("treeViewModel", &treeViewModel);
     engine.rootContext()->setContextProperty("statsPageModel", &statsPageModel);

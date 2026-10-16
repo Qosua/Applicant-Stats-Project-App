@@ -9,18 +9,22 @@ class ProgressHandler : public QObject {
     Q_PROPERTY(double progress READ getProgress CONSTANT)
     Q_PROPERTY(QString processName READ getProcessName CONSTANT)
     Q_PROPERTY(QString processMessage READ getProcessMessage CONSTANT)
+    Q_PROPERTY(bool active READ isActive CONSTANT)
 
     double processProgress = 0.0;  // in [0,1]
-    QString currentProcessName;
-    QString currentProcessMessage;
+    bool active = true;
+    QString currentProcessName = "Unknow Process";
+    QString currentProcessMessage = "None";
 
 public:
     explicit ProgressHandler(QObject* parent = nullptr);
 
     void addProgressValue(const double& value);
     void setProgress(const double& newProgress);
+    void setActive(const bool& arg);
 
     double getProgress() const;
+    bool isActive() const;
 
     void setProcessName(const QString& name);
     void setProcessMessage(const QString& message);
@@ -32,7 +36,6 @@ signals:
     void progressChanged(const double&);
     void processChanged(const QString&);
     void message(const QString&);
-    void processEnded(const QString&); //передаётся имя завершённого процесса
 };
 
 #endif  // PROGRESS_HANDLER_H

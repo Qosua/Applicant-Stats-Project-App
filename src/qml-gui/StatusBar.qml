@@ -51,6 +51,9 @@ Rectangle {
                 anchors.fill: parent
                 spacing: 15
                 Rectangle {
+
+                    visible: progressHandler.active
+
                     Layout.fillWidth: true
                     Layout.preferredHeight: parent.height / 3.8
                     Layout.alignment: Qt.AlignVCenter
@@ -63,7 +66,7 @@ Rectangle {
                         anchors.bottom: parent.bottom
 
                         height: parent.height
-                        width: parent.width * qmlHelper.currentLoadBarPart
+                        width: parent.width * progressHandler.progress
 
                         radius: parent.height
                         color: "#5073C1"
@@ -71,8 +74,11 @@ Rectangle {
                     }
                 }
                 Text {
+
+                    visible: progressHandler.active
+
                     Layout.alignment: Qt.AlignVCenter
-                    text: "Процесс"
+                    text: progressHandler.processName
                     font.pointSize: 11
                     color: "#bbbbbb"
                 }

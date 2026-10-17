@@ -20,7 +20,7 @@ ComboBox {
             : ""
 
         leftPadding: 8
-        color: "#cccccc"
+        color: Colors.textSecondaryColor
         font.pixelSize: 14
         verticalAlignment: Text.AlignVCenter
         elide: Text.ElideRight
@@ -28,8 +28,8 @@ ComboBox {
 
     background: Rectangle {
         radius: 8
-        color: comboBox.hovered ? "#292b2e" : "#232527"
-        border.color: (comboBox.popup.visible || comboBox.hovered) ? "#556da3" : "#323232"
+        color: comboBox.hovered ? Colors.surfaceHoverColor : Colors.surfaceColor
+        border.color: (comboBox.popup.visible || comboBox.hovered) ? Colors.accentColor : Colors.borderColor
         border.width: 1
 
         Behavior on color {
@@ -41,7 +41,7 @@ ComboBox {
         x: comboBox.width - width - 10
         y: comboBox.topPadding + (comboBox.availableHeight - height) / 2
         text: comboBox.popup.visible ? "⯅" : "⯆"
-        color: "#607ab5"
+        color: Colors.accentMutedColor
         font.pixelSize: 12
     }
 
@@ -52,10 +52,10 @@ ComboBox {
         contentItem: Text {
             text: (model.entryCommisionName
                 + "-"
-                + (model.entryCommisionIsBachelor ? "Бакалары" : "Магистры")
+                + (model.entryCommisionIsBachelor ? "Бакалавры" : "Магистры")
                 + "-"
                 + model.entryCommisionYear)
-            color: "#cccccc"
+            color: Colors.textSecondaryColor
             font.pixelSize: 14
             verticalAlignment: Text.AlignVCenter
             leftPadding: 12
@@ -63,7 +63,7 @@ ComboBox {
         }
 
         background: Rectangle {
-            color: highlighted ? "#3a4660" : hovered ? "#34363a" : "#191a1c"
+            color: highlighted ?Colors.surfaceSelectedColor : hovered ? Colors.surfaceHoverColor : Colors.panelColor
             Behavior on color {
                 ColorAnimation { duration: 100 }
             }
@@ -90,8 +90,8 @@ ComboBox {
         }
 
         background: Rectangle {
-            color: "#191a1c"
-            border.color: "#323232"
+            color: Colors.panelColor
+            border.color: Colors.borderColor
             border.width: 1
             radius: 8
         }

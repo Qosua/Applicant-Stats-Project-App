@@ -82,7 +82,7 @@ TreeView {
             Label {
                 anchors.verticalCenter: parent.verticalCenter
                 text: treeDelegate.expanded ? "⯆" : "⯈"
-                color: "#607ab5"
+                color: Colors.accentMutedColor
                 font.pixelSize: 14
             }
         }
@@ -95,14 +95,14 @@ TreeView {
                 text: model.code ?? "ОШИБКА КОДА НАПРАВЛЕНИЯ"
                 elide: Text.ElideRight
                 font.pixelSize: 14
-                color: "#888888"
+                color: Colors.textMutedColor
                 verticalAlignment: Text.AlignVCenter
                 Layout.fillHeight: true
             }
             Label {
                 text: model.display
                 elide: Text.ElideRight
-                color: "#CCCCCC"
+                color: Colors.textSecondaryColor
                 font.pixelSize: model.isFaculty ? 16 : 14
                 verticalAlignment: Text.AlignVCenter
                 Layout.fillHeight: true
@@ -112,7 +112,7 @@ TreeView {
                 text: model.studyForm ?? "ОШИБКА ФОРМЫ ОБУЧЕНИЯ"
                 elide: Text.ElideRight
                 font.pixelSize: 14
-                color: "#6c758a"
+                color: Colors.textInfoMutedColor
                 verticalAlignment: Text.AlignVCenter
                 Layout.fillHeight: true
             }
@@ -121,7 +121,7 @@ TreeView {
                 text: model.studyType ?? "ОШИБКА ВИДА ОБУЧЕНИЯ"
                 elide: Text.ElideRight
                 font.pixelSize: 14
-                color: "#87a586"
+                color: Colors.textSuccessMutedColor
                 verticalAlignment: Text.AlignVCenter
                 Layout.fillHeight: true
             }
@@ -155,9 +155,9 @@ TreeView {
                 }
             }
 
-            color: treeDelegate.current ? "#3a4660"
-                : treeDelegate.hovered ? "#34363a"
-                    : "#191a1c"
+            color: treeDelegate.current ? Colors.surfaceSelectedColor
+                : treeDelegate.hovered ? Colors.surfaceHoverColor
+                    : Colors.panelColor
         }
     }
 }

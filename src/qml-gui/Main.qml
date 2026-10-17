@@ -13,7 +13,7 @@ Window {
     height: 720; minimumHeight: 480
 
     visible: true
-    color: "#26282b"
+    color: Colors.backgroundColor
 
     LeftTopGradient {
         anchors.fill: parent
@@ -42,11 +42,11 @@ Window {
         }
 
         Rectangle {
-            color: "#232b40"
+            color: "#232b40" //заглушка пока без изменения
         }
 
         Rectangle {
-            color: "#7160a8"
+            color: "#7160a8" //заглушка пока без изменения
 
         }
     }
@@ -58,7 +58,7 @@ Window {
     Rectangle {
         id: dimOverlay
         anchors.fill: parent
-        color: "#000000"
+        color: Colors.overlayColor
         opacity: 0.45
         visible: windowManager.isMainWindowShadowed
         Behavior on opacity {

@@ -23,10 +23,10 @@ Button {
     property string btnToolTipName: ""
     property int btnToolTipDelay: 1
     property int iconSize: 22
-    property color btnIconColor: "#ced0d6"
+    property color btnIconColor: Colors.iconAltColor
     property color btnBackgroundColor: "transparent"
-    property color btnChoseBackgroundColor: "#556da3"
-    property color btnHoverBackgroundColor: "#393b40"
+    property color btnChoseBackgroundColor: Colors.accentColor
+    property color btnHoverBackgroundColor: Colors.surfaceHoverColor
 
     flat: true
     icon.source: btnIconSource
@@ -64,15 +64,15 @@ Button {
 
         contentItem: Text {
             text: btnToolTipName
-            color: "#ffffff"
+            color: Colors.textOnAccentColor
             font.pixelSize: 15
         }
 
         background: Rectangle {
             id: rect
-            color: "#2b2b2b"
+            color: Colors.cardColor
             radius: 5
-            border.color: "#40444a"
+            border.color: Colors.borderColor
 
             Behavior on color {
                 ColorAnimation {

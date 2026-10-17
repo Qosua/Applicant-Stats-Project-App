@@ -18,7 +18,7 @@ Item {
         spacing: 12
         visible: stats !== null
 
-        Label { text: facultyName; color: "#eee"; font.pixelSize: 24 }
+        Label { text: facultyName; color: Colors.textPrimaryColor; font.pixelSize: 24 }
 
 
 

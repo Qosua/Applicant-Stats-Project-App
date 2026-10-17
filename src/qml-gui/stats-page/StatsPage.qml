@@ -21,7 +21,7 @@ SplitView {
 
         implicitWidth: 4
 
-        color: SplitHandle.hovered ? "#556da3" : "transparent"
+        color: SplitHandle.hovered ? Colors.accentColor : "transparent"
 
         Behavior on color {
             ColorAnimation {
@@ -47,7 +47,7 @@ SplitView {
 
                 implicitHeight: 5
 
-                color: SplitHandle.hovered ? "#556da3" : "transparent"
+                color: SplitHandle.hovered ? 	Colors.panelColor : "transparent"
 
                 Behavior on color {
                     ColorAnimation {
@@ -57,9 +57,9 @@ SplitView {
             }
 
             Rectangle {
-                color: "#191a1c"
+                color: Colors.panelColor
                 border.width: 1
-                border.color: "#323232"
+                border.color: Colors.borderColor
                 topLeftRadius: 10
                 SplitView.fillHeight: tablesList.collapsed
                 SplitView.preferredHeight: parent.height / 2
@@ -85,9 +85,9 @@ SplitView {
             }
             TablesList {
                 id: tablesList
-                color: "#191a1c"
+                color: Colors.panelColor
                 border.width: 1
-                border.color: tablesList.dropped ? "#556da3" : "#323232"
+                border.color: tablesList.dropped ? Colors.accentColor :  Colors.borderColor
                 bottomLeftRadius: 10
 
                 SplitView.preferredHeight: collapsed ? collapsedHeight : parent.height / 2
@@ -102,8 +102,8 @@ SplitView {
 
         SplitView.preferredWidth: parent.width / (3 / 4)
         SplitView.minimumWidth: parent.width / 10
-        color: "#191a1c"
-        border.color: "#323232"; border.width: 1
+        color: Colors.panelColor
+        border.color: Colors.borderColor; border.width: 1
         topRightRadius: 10
         bottomRightRadius: 10
         clip: true
@@ -118,7 +118,7 @@ SplitView {
             visible: false
 
             height: visible ? 40 : 0
-            color: "red"
+            color: Colors.errorColor
 
         }
 

@@ -17,9 +17,9 @@ Rectangle {
         return Math.max(m, 1)
     }
 
-    color: "#222326"
+    color: Colors.cardColor
     border.width: 1
-    border.color: "#333333"
+    border.color: Colors.borderColor
     radius: 12
 
     ColumnLayout {
@@ -32,7 +32,7 @@ Rectangle {
             Layout.fillWidth: true
             horizontalAlignment: Qt.AlignHCenter
             text: "Распределение баллов поступающих"
-            color: "#eeeeee"
+            color: Colors.textPrimaryColor
             font.pixelSize: 16
             elide: Text.ElideRight
         }
@@ -44,13 +44,13 @@ Rectangle {
                 colorScheme: GraphsTheme.ColorScheme.Dark
 
                 backgroundColor: "transparent"
-                plotAreaBackgroundColor: "#202022"
+                plotAreaBackgroundColor: Colors.chartPlotColor
 
-                seriesColors: ["#5cb180"]
-                borderColors: ["#5cb180"]
+                seriesColors: [Colors.successColor]
+                borderColors: [Colors.successColor]
 
-                grid.mainColor: "#3a3a3c"
-                grid.subColor: "#222223"
+                grid.mainColor: Colors.chartGridMainColor
+                grid.subColor: Colors.chartGridSubColor
                 grid.mainWidth: 1
                 grid.subWidth: 1
 
@@ -59,7 +59,7 @@ Rectangle {
                 axisX.subColor: "transparent"
                 axisY.subColor: "transparent"
 
-                labelTextColor: "#dddddd"
+                labelTextColor: Colors.textSecondaryColor
                 labelFont.pixelSize: 13
             }
 
@@ -76,7 +76,7 @@ Rectangle {
 
                 titleText:    "Диапозоны баллов"
                 titleVisible: true
-                titleColor:   "#dddddd"
+                titleColor:   Colors.textSecondaryColor
                 titleFont.pixelSize: 14
             }
             axisY: ValueAxis {
@@ -88,7 +88,7 @@ Rectangle {
                 labelFormat: "%.0f"
                 titleText:    "Количество абитуриентов"
                 titleVisible: true
-                titleColor:   "#dddddd"
+                titleColor:   Colors.textSecondaryColor
                 titleFont.pixelSize: 14
             }
 

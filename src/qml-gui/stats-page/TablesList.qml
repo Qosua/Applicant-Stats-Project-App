@@ -56,7 +56,7 @@ Rectangle {
                 Layout.preferredWidth: parent.height + 7
 
                 btnIconSource: !tablesList.collapsed ? "qrc:/resources/icons/angle-down.png" : "qrc:/resources/icons/angle-up.png"
-                btnIconColor: "#aeaeae"
+                btnIconColor: Colors.iconColor
                 btnToolTipName: tablesList.collapsed ? " Развернуть " : " Свернуть "
                 btnToolTipDelay: 700
                 iconSize: 20
@@ -82,7 +82,7 @@ Rectangle {
                 Layout.preferredWidth: parent.height + 7
 
                 btnIconSource: "qrc:/resources/icons/plus.png"
-                btnIconColor: "#aeaeae"
+                btnIconColor: Colors.iconColor
                 btnToolTipName: " Добавить таблицу "
                 btnToolTipDelay: 700
                 iconSize: 20
@@ -97,7 +97,7 @@ Rectangle {
                 Layout.preferredWidth: parent.height + 7
 
                 btnIconSource: "qrc:/resources/icons/folder.png"
-                btnIconColor: "#aeaeae"
+                btnIconColor: Colors.iconColor
                 btnToolTipName: " Открыть папку хранения таблиц "
                 btnToolTipDelay: 700
                 iconSize: 20
@@ -115,7 +115,7 @@ Rectangle {
                 Layout.preferredWidth: parent.height + 7
 
                 btnIconSource: "qrc:/resources/icons/sort-alpha-down.png"
-                btnIconColor: "#aeaeae"
+                btnIconColor: Colors.iconColor
                 btnToolTipName: " Сортировать по имени "
                 btnToolTipDelay: 700
                 iconSize: 20
@@ -143,7 +143,7 @@ Rectangle {
         anchors.left: parent.left
         anchors.leftMargin: 1
         anchors.rightMargin: 1
-        color: "#2e2e2e"
+        color: Colors.borderColor
         height: 1
     }
 
@@ -181,10 +181,10 @@ Rectangle {
 
                 color: {
                     if (selected)
-                        return "#2d374e"
+                        return Colors.surfaceSelectedColor
                     if (delegatHover.hovered)
-                        return "#3f4247"
-                    return "#2c2e32"
+                        return Colors.surfaceHoverColor
+                    return Colors.surfaceColor
                 }
                 Behavior on color {
                     ColorAnimation {
@@ -218,7 +218,7 @@ Rectangle {
                     text: "(" + model.tableLastChangeDate + ")"
                     elide: Text.ElideRight
                     font.pointSize: 11
-                    color: "#999999"
+                    color: Colors.textMutedColor
                     anchors.top: parent.top
                     anchors.left: icon.right
                     anchors.margins: 5
@@ -228,7 +228,7 @@ Rectangle {
                     text: model.tableName
                     elide: Text.ElideRight
                     font.pointSize: 11
-                    color: "#eeeeee"
+                    color: Colors.textPrimaryColor
                     anchors.top: parent.top
                     anchors.left: tableLastChangeDateText.right
                     anchors.right: updateButton.left
@@ -266,7 +266,7 @@ Rectangle {
                     implicitWidth: parent.height - 20
 
                     btnIconSource: "qrc:/resources/icons/update-60.png"
-                    btnIconColor: "#aeaeae"
+                    btnIconColor: Colors.iconColor
                     btnToolTipName: "обновить"
                     btnToolTipDelay: 700
                     iconSize: 24
@@ -299,7 +299,7 @@ Rectangle {
                 Layout.preferredWidth: 38
 
                 btnIconSource: "qrc:/resources/icons/plus.png"
-                btnIconColor: "#aeaeae"
+                btnIconColor: Colors.iconColor
                 btnToolTipDelay: 700
                 iconSize: 38
 
@@ -321,7 +321,7 @@ Rectangle {
                 text: tablesList.dropped
                     ? "Отпустите, чтобы добавить"
                     : "Перетащите таблицу сюда\nили нажмите +"
-                color: tablesList.dropped ? "#aeaeae" : "#6c6e72"
+                color: tablesList.dropped ? Colors.iconColor : Colors.textFaintColor
                 font.pointSize: 14
                 lineHeight: 1.2
             }

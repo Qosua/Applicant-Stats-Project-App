@@ -17,6 +17,7 @@
 #include "utils/logger.h"
 #include "utils/progress-handler.h"
 #include "utils/scripts.h"
+#include "utils/theme-manager.h"
 
 /// Метод нужен просто для компактности кода
 ///
@@ -82,6 +83,7 @@ int main(int argc, char* argv[]) {
     StatsPageModel           statsPageModel;  // модель страниц статистики
     EntryCommisionsListModel entryModel;      // модель списка доступных правил приёма (приёмных коммисий)
     ProgressHandler          progressHandler; // контролер состояния прогресс бара
+    ThemeManager             themeManager;    // мэнэджер визуальной темы
 
     qmlHelper.setAppVersion("1.0.0");
 
@@ -106,6 +108,7 @@ int main(int argc, char* argv[]) {
     engine.rootContext()->setContextProperty("statsPageModel", &statsPageModel);
     engine.rootContext()->setContextProperty("entryCommisionsListModel", &entryModel);
     engine.rootContext()->setContextProperty("applicantsListModel", statsPageModel.getApplicantsListModel().get());
+    engine.rootContext()->setContextProperty("Colors", &themeManager);
     engine.loadFromModule("ApplicantStatsProjectModule", "Main");
 
     int ret = QApplication::exec();

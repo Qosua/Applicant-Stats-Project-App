@@ -44,13 +44,13 @@ Window {
         implicitWidth: 36
         implicitHeight: 36
         radius: 7
-        color: cbHover.hovered ? "#55373f" : "transparent"
+        color: cbHover.hovered ? Colors.errorHoverBgColor: "transparent"
         Behavior on color { ColorAnimation { duration: 100 } }
 
         Text {
             anchors.centerIn: parent
             text: "✕"
-            color: cbHover.hovered ? "#e89d9d" : "#9a9aa0"
+            color: cbHover.hovered ? Colors.textErrorColor : Colors.textMutedColor
             font.pixelSize: 18
         }
         HoverHandler { id: cbHover; cursorShape: Qt.PointingHandCursor }
@@ -59,20 +59,20 @@ Window {
 
     component StyledField: TextField {
         id: tf
-        color: "#e8e8ec"
+        color: Colors.textPrimaryColor
         font.pixelSize: 14
         selectByMouse: true
         leftPadding: 12
         rightPadding: 12
-        placeholderTextColor: "#5c6066"
+        placeholderTextColor: Colors.textPlaceholderColor
 
         background: Rectangle {
             radius: 8
             implicitHeight: 34
-            color: tf.hovered ? "#292b2e" : "#232527"
+            color: tf.hovered ? Colors.surfaceHoverColor : Colors.surfaceColor
             border.width: 1
-            border.color: tf.activeFocus ? "#556da3"
-                : (tf.hovered ? "#3a3c40" : "#323232")
+            border.color: tf.activeFocus ? Colors.accentColor
+                : (tf.hovered ? Colors.surfaceHoverColor : Colors.borderColor)
             Behavior on color { ColorAnimation { duration: 100 } }
         }
     }
@@ -88,8 +88,8 @@ Window {
         contentItem: Text {
             id: btnText
             text: btn.text
-            color: !btn.enabled ? "#6a6c70"
-                : (btn.primary ? "#ffffff" : "#d4d8e0")
+            color: !btn.enabled ? Colors.textFaintColor
+                : (btn.primary ? Colors.textOnAccentColor : Colors.textLightColor)
             font.pixelSize: 14
             font.weight: btn.primary ? Font.Medium : Font.Normal
             horizontalAlignment: Text.AlignHCenter
@@ -97,12 +97,12 @@ Window {
         }
         background: Rectangle {
             radius: 8
-            color: !btn.enabled ? "#26272a"
+            color: !btn.enabled ? Colors.surfaceColor
                 : btn.primary
-                    ? (btn.down ? "#48619c" : btn.hovered ? "#5f79b8" : "#556da3")
-                    : (btn.down ? "#2a2c30" : btn.hovered ? "#34363a" : "#2a2b2e")
+                    ? (btn.down ? Colors.accentPressedColor : btn.hovered ? Colors.accentHoverColor : Colors.accentColor)
+                    : (btn.down ? Colors.surfaceColor : btn.hovered ? Colors.surfaceHoverColor : Colors.surfaceColor)
             border.width: btn.primary ? 0 : 1
-            border.color: "#3a3c40"
+            border.color: Colors.surfaceHoverColor
             Behavior on color { ColorAnimation { duration: 100 } }
         }
         HoverHandler { cursorShape: btn.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor }
@@ -115,7 +115,7 @@ Window {
 
         Label {
             text: parent.label
-            color: "#cccccc"
+            color: Colors.textSecondaryColor
             font.pixelSize: 16
             Layout.preferredWidth: 150
             Layout.alignment: Qt.AlignVCenter
@@ -134,7 +134,7 @@ Window {
         anchors.fill: shadowSource
         source: shadowSource
         shadowEnabled: true
-        shadowColor: "#000000"
+        shadowColor: Colors.overlayColor
         shadowOpacity: 0.3
         shadowBlur: 1.3
         shadowVerticalOffset: 9
@@ -146,8 +146,8 @@ Window {
         anchors.fill: parent
         anchors.margins: 10
         radius: 8
-        color: "#1e1f22"
-        border.color: "#323232"
+        color: Colors.panelColor
+        border.color: Colors.borderColor
         border.width: 1
 
         ColumnLayout {
@@ -178,7 +178,7 @@ Window {
                     spacing: 10
                     Label {
                         text: "Настройки таблицы"
-                        color: "#eeeeee"
+                        color: Colors.textPrimaryColor
                         font.pixelSize: 18
                         font.weight: Font.Medium
                         Layout.fillWidth: true
@@ -193,7 +193,7 @@ Window {
                 }
             }
 
-            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 1; color: "#2e2e2e" }
+            Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 1; color: Colors.borderColor }
 
             ColumnLayout {
                 Layout.fillWidth: true
@@ -233,7 +233,7 @@ Window {
 
             }
 
-            Rectangle { Layout.fillWidth: true; implicitHeight: 1; color: "#2e2e2e" }
+            Rectangle { Layout.fillWidth: true; implicitHeight: 1; color: Colors.borderColor }
 
             Item { Layout.fillHeight: true; Layout.fillWidth: true;}
 

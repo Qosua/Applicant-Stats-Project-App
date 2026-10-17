@@ -23,7 +23,7 @@ Item {
             Text {
                 id: innerText
                 font.family: "Lato"
-                color: "#797979"
+                color: Colors.textFaintColor
                 font.pixelSize: 17
                 text: checkBox.isToggled ? "\uf046" : "\uf096"
                 width: 16
@@ -31,7 +31,7 @@ Item {
             // Checkbox text
             Text {
                 anchors.verticalCenter: innerText.verticalCenter
-                color: "#bbbbbb"
+                color: Colors.textMutedColor
                 font.family: "Lato"
                 text: isToggled ? "Скрыто" : "Скрыть"
                 font.pixelSize: 13
@@ -66,13 +66,13 @@ Item {
     component StatCard: Rectangle {
         property string label: ""
         property var value: "—"
-        property color accentColor: "#888888"
+        property color accentColor: Colors.textMutedColor
 
         Layout.fillWidth: true
         Layout.preferredHeight: 78
         radius: 8
-        color: "#222326"
-        border.color: "#2d2d35"
+        color: Colors.cardColor
+        border.color: Colors.borderColor
         border.width: 1
 
         // Цветной акцент слева
@@ -95,7 +95,7 @@ Item {
 
             Label {
                 text: label
-                color: "#dddddd"
+                color: Colors.textSecondaryColor
                 font.pixelSize: 11
                 font.weight: Font.DemiBold
             }
@@ -120,13 +120,13 @@ Item {
         //page header
         Label {
             text: stats ? stats.name : "STATS ARE NULL"
-            color: "#eeeeee"
+            color: Colors.textPrimaryColor
             font.pixelSize: 24
             font.weight: Font.Medium
         }
         Label {
             text: stats ? "Факультет: " + stats.facultyName : "STATS ARE NULL"
-            color: "#aaaaaa";
+            color: Colors.textMutedColor;
             font.pixelSize: 16
             font.weight: Font.Medium
         }
@@ -136,36 +136,36 @@ Item {
             spacing: 12
             Label {
                 text: "Вид обучения:";
-                color: "#dddddd"; font.pixelSize: 15
+                color: Colors.textSecondaryColor; font.pixelSize: 15
                 font.weight: Font.Medium
             }
             Label {
                 text: (stats ? stats.studyType : "ОШИБКА ВИДА ОБУЧЕНИЯ (QML)");
-                color: "#aad3a8"; font.pixelSize: 15
+                color: Colors.textSuccessMutedColor; font.pixelSize: 15
                 font.weight: Font.Medium
             }
             Item {
             }
             Label {
                 text: "Форма обучения:";
-                color: "#dddddd"; font.pixelSize: 15
+                color: Colors.textSecondaryColor; font.pixelSize: 15
                 font.weight: Font.Medium
             }
             Label {
                 text: (stats ? stats.studyForm : "ОШИБКА ФОРМЫ ОБУЧЕНИЯ (QML)");
-                color: "#9ca9c8"; font.pixelSize: 15
+                color: Colors.textInfoMutedColor; font.pixelSize: 15
                 font.weight: Font.Medium
             }
             Item {
             }
             Label {
                 text: "Код направления:";
-                color: "#dddddd"; font.pixelSize: 15
+                color: Colors.textSecondaryColor; font.pixelSize: 15
                 font.weight: Font.Medium
             }
             Label {
                 text: (stats ? stats.code : "ОШИБКА КОДА НАПРАВЛЕНИЯ (QML)");
-                color: "#b891a2"; font.pixelSize: 15
+                color: Colors.textPurpleColor; font.pixelSize: 15
                 font.weight: Font.Medium
             }
         }
@@ -174,7 +174,7 @@ Item {
         Rectangle {
             Layout.fillWidth: true;
             height: 1
-            color: "#404040"
+            color: Colors.dividerColor
         }
 
         //score graph and applicants list
@@ -184,7 +184,7 @@ Item {
 
                 implicitWidth: 6
 
-                color: SplitHandle.hovered ? "#556da3" : "transparent"
+                color: SplitHandle.hovered ? Colors.accentColor : "transparent"
 
                 Behavior on color {
                     ColorAnimation {
@@ -233,7 +233,7 @@ Item {
                     Label {
                         width: 25
                         text: "#"
-                        color: "#555555"
+                        color: Colors.textFaintColor
                         font.pixelSize: 15
                         font.family: "Consolas"
                     }
@@ -242,7 +242,7 @@ Item {
                         spacing: 2
                         Label {
                             text: "ID"
-                            color: "#557799"
+                            color: Colors.textInfoDimColor
                             font.pixelSize: 15
                             font.family: "Consolas"
                         }
@@ -257,7 +257,7 @@ Item {
                         spacing: 2
                         Label {
                             text: "Баллы"
-                            color: "#6a9960"
+                            color: Colors.textSuccessDimColor
                             font.pixelSize: 15
                             font.family: "Consolas"
                         }
@@ -272,7 +272,7 @@ Item {
                         spacing: 2
                         Label {
                             text: "Телефон"
-                            color: "#6a6a6a"
+                            color: Colors.textFaintColor
                             font.pixelSize: 15
                             font.family: "Consolas"
                         }
@@ -287,7 +287,7 @@ Item {
                         Label {
                             text: "ФИО"
                             font.pixelSize: 15
-                            color: "#9a9aa0"
+                            color: Colors.textMutedColor
                             font.family: "Consolas"
                         }
                         CustomCheckBox {
@@ -304,7 +304,7 @@ Item {
                     anchors.top: listHeader.bottom
                     width: parent.width
                     height: 1
-                    color: "#3a3c40"
+                    color: Colors.borderColor
                 }
 
                 //list
@@ -354,7 +354,7 @@ Item {
                         height: 24
                         radius: 4
 
-                        color: hoverHandler.hovered ? "#34363a" : "#26282b"
+                        color: hoverHandler.hovered ? Colors.surfaceHoverColor : Colors.surfaceColor
 
                         Behavior on color {
                             ColorAnimation {
@@ -374,7 +374,7 @@ Item {
 
                             Label {
                                 text: applicantDelegate.index + 1
-                                color: "#777777"
+                                color: Colors.textFaintColor
                                 font.pixelSize: 12
                                 font.family: "Consolas"
                                 horizontalAlignment: Text.AlignLeft
@@ -384,7 +384,7 @@ Item {
                             Label {
                                 text: (applicantsList.isIDHidden ? "..." :
                                     applicantDelegate.applicantId)
-                                color: "#7f9cc4"
+                                color: Colors.textInfoColor
                                 font.pixelSize: 12
                                 font.family: "Consolas"
                                 Layout.preferredWidth: 77
@@ -393,7 +393,7 @@ Item {
                             Label {
                                 text: (applicantsList.isScoreHidden ? "..." :
                                     applicantDelegate.applicantScore)
-                                color: "#91cd84"
+                                color: Colors.textSuccessColor
                                 font.pixelSize: 12
                                 font.family: "Consolas"
                                 elide: Text.ElideRight
@@ -403,7 +403,7 @@ Item {
                             Label {
                                 text: (applicantsList.isPhoneHidden ? "..." :
                                     applicantDelegate.applicantPhone)
-                                color: "#9a9a9a"
+                                color: Colors.textMutedColor
                                 font.pixelSize: 12
                                 font.family: "Consolas"
                                 Layout.preferredWidth: 140
@@ -412,7 +412,7 @@ Item {
                             Label {
                                 text: (applicantsList.isFIOHidden ? "..." :
                                     applicantDelegate.applicantName)
-                                color: "#e8e8ec"
+                                color: Colors.textPrimaryColor
                                 font.pixelSize: 12
                                 font.family: "Consolas"
                                 elide: Text.ElideRight
@@ -430,7 +430,7 @@ Item {
             id: divider2
             Layout.fillWidth: true;
             height: 1
-            color: "#404040"
+            color: Colors.dividerColor
         }
 
         //progressBar and panels
@@ -443,8 +443,8 @@ Item {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 78
                 radius: 8
-                color: "#222326"
-                border.color: "#2d2d35"
+                color: 	Colors.cardColor
+                border.color: Colors.borderColor
                 border.width: 1
 
                 ColumnLayout {
@@ -456,14 +456,14 @@ Item {
                         spacing: 10
                         Label {
                             text: "ЗАЧИСЛЕНО"
-                            color: "#dddddd"
+                            color: Colors.textSecondaryColor
                             font.pixelSize: 11
                             font.weight: Font.DemiBold
                             Layout.fillWidth: true
                         }
                         Label {
                             text: (stats ? stats.size : 0) + " / " + (stats ? stats.capacity : 0)
-                            color: "#e8e8ec"
+                            color: Colors.textPrimaryColor
                             font.pixelSize: 18
                             font.weight: Font.DemiBold
                         }
@@ -471,7 +471,7 @@ Item {
                             text: stats && stats.capacity > 0
                                 ? Math.round((stats.size / stats.capacity) * 100) + "%"
                                 : "0%"
-                            color: "#6fa86f"
+                            color: Colors.successColor
                             font.pixelSize: 18
                             font.weight: Font.Medium
                         }
@@ -481,7 +481,7 @@ Item {
                         Layout.fillWidth: true
                         Layout.preferredHeight: 6
                         radius: 3
-                        color: "#2a2a32"
+                        color: Colors.surfaceColor
 
                         Rectangle {
                             width: parent.width * (stats && stats.capacity > 0
@@ -492,10 +492,10 @@ Item {
                             gradient: Gradient {
                                 orientation: Gradient.Horizontal
                                 GradientStop {
-                                    position: 0.0; color: "#4a8a4a"
+                                    position: 0.0; color: Colors.progressGradient().start
                                 }
                                 GradientStop {
-                                    position: 1.0; color: "#7ab87a"
+                                    position: 1.0; color: Colors.progressGradient().end
                                 }
                             }
                             Behavior on width {
@@ -516,27 +516,27 @@ Item {
                 StatCard {
                     label: "ПРОХОДНОЙ"
                     value: stats && stats.size === stats.capacity ? stats.minScore : "-"
-                    accentColor: "#d4a373"
+                    accentColor: Colors.chartColor1
                 }
                 StatCard {
                     label: "МАКСИМУМ"
                     value: stats && stats.maxScore !== undefined ? stats.maxScore : "-"
-                    accentColor: "#7fb37f"
+                    accentColor: Colors.chartColor2
                 }
                 StatCard {
                     label: "МИНИМУМ"
                     value: stats && stats.minScore !== undefined ? stats.minScore : "-"
-                    accentColor: "#c47878"
+                    accentColor: Colors.chartColor3
                 }
                 StatCard {
                     label: "СРЕДНИЙ"
                     value: stats && stats.meanScore !== undefined ? stats.meanScore.toFixed(1) : "-"
-                    accentColor: "#7f9cc4"
+                    accentColor: Colors.chartColor4
                 }
                 StatCard {
                     label: "МЕДИАНА"
                     value: stats && stats.midScore !== undefined ? stats.midScore.toFixed(1) : "-"
-                    accentColor: "#a37fc4"
+                    accentColor: Colors.chartColor5
                 }
             }
         }

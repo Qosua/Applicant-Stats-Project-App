@@ -15,10 +15,10 @@ Rectangle {
     anchors.margins: 10
     anchors.bottomMargin: 0
 
-    border.color: "#323232"
+    border.color: Colors.borderColor
     border.width: 1
 
-    color: "#191a1c"
+    color: Colors.panelColor
 
     ColumnLayout {
 

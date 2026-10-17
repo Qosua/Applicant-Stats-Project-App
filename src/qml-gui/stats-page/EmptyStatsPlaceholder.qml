@@ -15,7 +15,7 @@ Rectangle {
         width: 340; height: 340
         radius: width / 2
         color: "transparent"
-        border.color: "#6e8cd1"
+        border.color: Colors.accentLightColor
         border.width: 1
         opacity: 0.16
 
@@ -37,7 +37,7 @@ Rectangle {
         width: 230; height: 230
         radius: width / 2
         color: "transparent"
-        border.color: "#6e8cd1"
+        border.color: Colors.accentLightColor
         border.width: 1
         opacity: 0.32
 
@@ -64,8 +64,8 @@ Rectangle {
             Layout.alignment: Qt.AlignHCenter
             Layout.bottomMargin: 10
             radius: 22
-            color: "#1f2125"
-            border.color: "#3a4660"
+            color: Colors.cardColor
+            border.color: Colors.borderColor
             border.width: 1
 
             Item {
@@ -74,22 +74,22 @@ Rectangle {
 
                 Rectangle {
                     x: 0; width: 10; height: 20; radius: 2
-                    color: "#3f5587"
+                    color: Colors.chartBarsPalette()[0]
                     anchors.bottom: parent.bottom
                 }
                 Rectangle {
                     x: 16; width: 10; height: 34; radius: 2
-                    color: "#556da3"
+                    color: Colors.chartBarsPalette()[1]
                     anchors.bottom: parent.bottom
                 }
                 Rectangle {
                     x: 32; width: 10; height: 26; radius: 2
-                    color: "#6781b8"
+                    color: 	Colors.chartBarsPalette()[2]
                     anchors.bottom: parent.bottom
                 }
                 Rectangle {
                     x: 48; width: 10; height: 44; radius: 2
-                    color: "#8a9fcc"
+                    color: Colors.chartBarsPalette()[3]
                     anchors.bottom: parent.bottom
                 }
             }
@@ -98,7 +98,7 @@ Rectangle {
         Text {
             Layout.alignment: Qt.AlignHCenter
             text: "Выберите таблицу и направление/факультет"
-            color: "#d4d8e0"
+            color: Colors.textPrimaryColor
             font.pixelSize: 22
             font.weight: Font.Medium
         }
@@ -106,7 +106,7 @@ Rectangle {
         Text {
             Layout.alignment: Qt.AlignHCenter
             text: "для начала работы со статистикой"
-            color: "#7a8090"
+            color: Colors.textFaintColor
             font.pixelSize: 19
         }
 
@@ -122,7 +122,7 @@ Rectangle {
                     position: 0.0; color: "transparent"
                 }
                 GradientStop {
-                    position: 0.5; color: "#556da3"
+                    position: 0.5; color: Colors.accentColor
                 }
                 GradientStop {
                     position: 1.0; color: "transparent"
@@ -133,7 +133,7 @@ Rectangle {
             Layout.alignment: Qt.AlignHCenter
             Layout.topMargin: 4
             text: "Список доступных таблиц - слева"
-            color: "#555a64"
+            color: 	Colors.textFaintColor
             font.pixelSize: 16
         }
     }

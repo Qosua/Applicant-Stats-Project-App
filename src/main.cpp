@@ -19,6 +19,7 @@
 #include "utils/qml-helper.h"
 #include "utils/logger.h"
 #include "utils/scripts.h"
+#include "utils/theme-manager.h"
 
 void connectSignals(QmlHelper& qmlHelper, CacheManager& cacheManager, TreeViewModel& treeViewModel,
 		    StatsPageModel& statsPageModel) {
@@ -66,6 +67,7 @@ int main(int argc, char* argv[]) {
     TreeViewModel treeViewModel;
     StatsPageModel statsPageModel;
     EntryCommisionsListModel entryModel;
+    ThemeManager themeManager;
 
     qmlHelper.setAppVersion("1.0.0");
 
@@ -85,6 +87,7 @@ int main(int argc, char* argv[]) {
     engine.rootContext()->setContextProperty("treeViewModel", &treeViewModel);
     engine.rootContext()->setContextProperty("statsPageModel", &statsPageModel);
     engine.rootContext()->setContextProperty("entryCommisionsListModel", &entryModel);
+    engine.rootContext()->setContextProperty("Colors", &themeManager);
     engine.rootContext()->setContextProperty("applicantsListModel",
                                              statsPageModel.getApplicantsListModel().get());
     engine.loadFromModule("ApplicantStatsProjectModule", "Main");

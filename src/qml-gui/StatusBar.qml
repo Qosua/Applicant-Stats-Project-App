@@ -8,7 +8,7 @@ Rectangle {
     id: statusBar
 
     height: 30
-    color: "#26282b"
+    color: Colors.backgroundColor
 
     anchors.left: parent.left
     anchors.right: parent.right
@@ -33,7 +33,7 @@ Rectangle {
                 ? "Таблица: " + arr[arr.length - 1]
                 : "Файл не выбран")
             font.pointSize: 11
-            color: "#cccccc"
+            color: Colors.textSecondaryColor
             elide: Text.ElideMiddle
         }
 
@@ -56,7 +56,7 @@ Rectangle {
                     Layout.alignment: Qt.AlignVCenter
                     radius: parent.height / 2
 
-                    color: "#3c3c3c"
+                    color: Colors.surfaceColor
                     Rectangle {
                         anchors.left: parent.left
                         anchors.top: parent.top
@@ -66,7 +66,7 @@ Rectangle {
                         width: parent.width * qmlHelper.currentLoadBarPart
 
                         radius: parent.height
-                        color: "#5073C1"
+                        color: Colors.accentColor
 
                     }
                 }
@@ -74,7 +74,7 @@ Rectangle {
                     Layout.alignment: Qt.AlignVCenter
                     text: "Процесс"
                     font.pointSize: 11
-                    color: "#bbbbbb"
+                    color: Colors.textMutedColor
                 }
             }
         }
@@ -90,7 +90,7 @@ Rectangle {
 
             text: "Версия: " + qmlHelper.appVersion
             font.pointSize: 11
-            color: "#cccccc"
+            color: Colors.textSecondaryColor
 
         }
     }

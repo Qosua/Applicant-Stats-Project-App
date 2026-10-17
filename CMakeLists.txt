@@ -76,7 +76,10 @@ add_executable(ApplicantStatsProject
         src/models/entry-commisions-list-model.cpp
 #########################################################
         resources.qrc
-#########################################################
+        src/utils/theme-manager.cpp
+        src/utils/theme-manager.h
+
+        #########################################################
 )
 
 qt_add_qml_module(ApplicantStatsProject

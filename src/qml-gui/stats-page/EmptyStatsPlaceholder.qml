@@ -74,22 +74,22 @@ Rectangle {
 
                 Rectangle {
                     x: 0; width: 10; height: 20; radius: 2
-                    color: Colors.chartBarsPalette()[0]
+                    color: "#3f5587"
                     anchors.bottom: parent.bottom
                 }
                 Rectangle {
                     x: 16; width: 10; height: 34; radius: 2
-                    color: Colors.chartBarsPalette()[1]
+                    color: "#556da3"
                     anchors.bottom: parent.bottom
                 }
                 Rectangle {
                     x: 32; width: 10; height: 26; radius: 2
-                    color: 	Colors.chartBarsPalette()[2]
+                    color: 	"#6781b8"
                     anchors.bottom: parent.bottom
                 }
                 Rectangle {
                     x: 48; width: 10; height: 44; radius: 2
-                    color: Colors.chartBarsPalette()[3]
+                    color: "#8a9fcc"
                     anchors.bottom: parent.bottom
                 }
             }

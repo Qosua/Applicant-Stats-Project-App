@@ -80,7 +80,7 @@ add_executable(ApplicantStatsProject
         resources.qrc
         src/utils/theme-manager.cpp
         src/utils/theme-manager.h
-
+        src/utils/theme-colors.def
         #########################################################
 )
 

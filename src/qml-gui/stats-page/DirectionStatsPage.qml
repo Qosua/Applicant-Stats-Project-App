@@ -492,10 +492,10 @@ Item {
                             gradient: Gradient {
                                 orientation: Gradient.Horizontal
                                 GradientStop {
-                                    position: 0.0; color: Colors.progressGradient().start
+                                    position: 0.0; color: Colors.progressGradientStart
                                 }
                                 GradientStop {
-                                    position: 1.0; color: Colors.progressGradient().end
+                                    position: 1.0; color: Colors.progressGradientEnd
                                 }
                             }
                             Behavior on width {
@@ -516,27 +516,27 @@ Item {
                 StatCard {
                     label: "ПРОХОДНОЙ"
                     value: stats && stats.size === stats.capacity ? stats.minScore : "-"
-                    accentColor: Colors.chartColor1
+                    accentColor: Colors.statisticsPassingColor
                 }
                 StatCard {
                     label: "МАКСИМУМ"
                     value: stats && stats.maxScore !== undefined ? stats.maxScore : "-"
-                    accentColor: Colors.chartColor2
+                    accentColor: Colors.statisticsMaximumColor
                 }
                 StatCard {
                     label: "МИНИМУМ"
                     value: stats && stats.minScore !== undefined ? stats.minScore : "-"
-                    accentColor: Colors.chartColor3
+                    accentColor: Colors.statisticsMinimumColor
                 }
                 StatCard {
                     label: "СРЕДНИЙ"
                     value: stats && stats.meanScore !== undefined ? stats.meanScore.toFixed(1) : "-"
-                    accentColor: Colors.chartColor4
+                    accentColor: Colors.statisticsAverageColor
                 }
                 StatCard {
                     label: "МЕДИАНА"
                     value: stats && stats.midScore !== undefined ? stats.midScore.toFixed(1) : "-"
-                    accentColor: Colors.chartColor5
+                    accentColor: Colors.statisticsMedianColor
                 }
             }
         }

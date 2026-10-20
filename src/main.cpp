@@ -16,11 +16,9 @@
 #include "utils/qml-helper.h"
 #include "utils/logger.h"
 #include "utils/progress-handler.h"
-#include "utils/scripts.h"
 #include "utils/theme-manager.h"
 
 /// Метод нужен просто для компактности кода
-///
 /// @param QmlHelper& qmlHelper
 /// @param CacheManager& cacheManager
 /// @param TreeViewModel& treeViewModel
@@ -48,12 +46,16 @@ void connectSignals(QmlHelper& qmlHelper, CacheManager& cacheManager, TreeViewMo
 }
 
 /// Метод нужен для первичной инициализации CacheManager в другом потоке
-/// @param QThread& объект потока в который передаём CacheManager
-/// @param CacheManager& сам CacheManager
+/// @param QThread& thread объект потока в который передаём CacheManager
+/// @param CacheManager& cacheManager сам CacheManager
 /// @return void
 void moveToThread(QThread& thread, CacheManager& cacheManager) {
+
     cacheManager.moveToThread(&thread);
+
+    // Инициализация объекта в потоке после старта самого потока
     QObject::connect(&thread, &QThread::started, &cacheManager, &CacheManager::init);
+
     thread.start();
 }
 
@@ -85,7 +87,7 @@ int main(int argc, char* argv[]) {
     ProgressHandler          progressHandler; // контролер состояния прогресс бара
     ThemeManager             themeManager;    // мэнэджер визуальной темы
 
-    qmlHelper.setAppVersion("1.0.0");
+    qmlHelper.setAppVersion("26.01");
 
     connectSignals(qmlHelper, cacheManager, treeViewModel, statsPageModel);
     moveToThread(cacheThread, cacheManager);
@@ -95,8 +97,8 @@ int main(int argc, char* argv[]) {
 
     //----Объекты ответственные за весь визуал программы-------------
     QQmlApplicationEngine engine;
-    QQuickStyle::setStyle("Basic");
     WindowManager::init(&engine);
+    QQuickStyle::setStyle("Basic");
 
     //----передача объектов для qml в его контекст (можно воспринимать как глобальную область видимости)
     engine.rootContext()->setContextProperty("sortFilterProxyModel", &proxyModel);

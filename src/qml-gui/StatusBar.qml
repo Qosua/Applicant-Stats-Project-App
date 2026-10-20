@@ -13,7 +13,6 @@ Rectangle {
     anchors.bottom: parent.bottom
     anchors.left: parent.left
     anchors.right: parent.right
-    anchors.bottom: parent.bottom
     anchors.leftMargin: 15
     anchors.rightMargin: 15
     anchors.topMargin: 5

@@ -1,0 +1,70 @@
+
+ //  Фоны
+COLOR(backgroundColor, "#26282b", "#ffffff")
+COLOR(panelColor,      "#191a1c", "#ffffff")
+COLOR(surfaceColor,      "#232527", "#ffffff")
+COLOR(surfaceHoverColor,      "#2f3033", "#ffffff")
+COLOR(surfaceSelectedColor,      "#2d374e", "#ffffff")
+COLOR(chartPlotColor,      "#202022", "#ffffff")
+COLOR(cardColor,      "#222326", "#ffffff")
+
+//  Границы и разделители
+COLOR(borderColor,      "#323232", "#ffffff")
+COLOR(dividerColor,      "#404040", "#ffffff")
+COLOR(chartGridMainColor,      "#3a3a3c", "#ffffff")
+COLOR(chartGridSubColor,      "#222223", "#ffffff")
+
+// Акценты
+COLOR(accentColor,        "#556da3", "#ffffff")
+COLOR(accentHoverColor,   "#5f79b8", "#ffffff")
+COLOR(accentPressedColor, "#48619c", "#ffffff")
+COLOR(accentLightColor,   "#6e8cd1", "#ffffff")
+COLOR(accentMutedColor,   "#607ab5", "#ffffff")
+
+// Текст
+COLOR(textPrimaryColor,     "#eeeeee", "#ffffff")
+COLOR(textSecondaryColor,   "#cccccc", "#ffffff")
+COLOR(textMutedColor,       "#999999", "#ffffff")
+COLOR(textFaintColor,       "#6a6c70", "#ffffff")
+COLOR(textPlaceholderColor, "#5c6066", "#ffffff")
+COLOR(textOnAccentColor,    "#ffffff", "#ffffff")
+
+// Семантический текст
+COLOR(textSuccessColor,      "#91cd84", "#ffffff")
+COLOR(textSuccessMutedColor, "#87a586", "#ffffff")
+COLOR(textSuccessDimColor,   "#6a9960", "#ffffff")
+COLOR(textErrorColor,        "#e89d9d", "#ffffff")
+COLOR(textInfoColor,         "#7f9cc4", "#ffffff")
+COLOR(textInfoMutedColor,    "#6c758a", "#ffffff")
+COLOR(textInfoDimColor,      "#557799", "#ffffff")
+COLOR(textPurpleColor,       "#b891a2", "#ffffff")
+
+// Семантические цвета
+COLOR(successColor,      "#5cb180", "#ffffff")
+COLOR(successLightColor, "#7fb37f", "#ffffff")
+COLOR(errorColor,        "#c47878", "#ffffff")
+COLOR(warningColor,      "#d4a373", "#ffffff")
+COLOR(infoColor,         "#7f9cc4", "#ffffff")
+COLOR(purpleColor,       "#a37fc4", "#ffffff")
+
+// Семантическая палитра
+COLOR(chartColor1, "#d4a373", "#ffffff")
+COLOR(chartColor2, "#7fb37f", "#ffffff")
+COLOR(chartColor3, "#c47878", "#ffffff")
+COLOR(chartColor4, "#7f9cc4", "#ffffff")
+COLOR(chartColor5, "#a37fc4", "#ffffff")
+
+// Служебные
+COLOR(iconColor,    "#aeaeae", "#ffffff")
+COLOR(iconAltColor, "#ced0d6", "#ffffff")
+COLOR(overlayColor, "#000000", "#ffffff")
+COLOR(progressGradientStart, "#4a8a4a", "#ffffff")
+COLOR(progressGradientEnd, "#7ab87a", "#ffffff")
+
+//Цвета ститистики
+COLOR(statisticsPassingColor, "#d4a373", "#ffffff")
+COLOR(statisticsMaximumColor, "#7fb37f", "#ffffff")
+COLOR(statisticsMinimumColor, "#c47878", "#ffffff")
+COLOR(statisticsAverageColor, "#7f9cc4", "#ffffff")
+COLOR(statisticsMedianColor, "#a37fc4", "#ffffff")
+

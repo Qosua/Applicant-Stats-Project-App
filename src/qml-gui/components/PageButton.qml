@@ -22,7 +22,7 @@ Button {
     property string btnIconSource: ""
     property string btnToolTipName: ""
     property int btnToolTipDelay: 1
-    property int iconSize: 22
+    property int iconSize: 21
     property color btnIconColor: Colors.iconAltColor
     property color btnBackgroundColor: "transparent"
     property color btnChoseBackgroundColor: Colors.accentColor

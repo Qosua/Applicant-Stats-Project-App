@@ -1,8 +1,3 @@
-
-//
-// Created by artem on 04.10.2026.
-//
-
 #include "theme-manager.h"
 
 ThemeManager::ThemeManager(QObject *parent) : QObject(parent) {

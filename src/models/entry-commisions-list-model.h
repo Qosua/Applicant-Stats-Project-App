@@ -5,7 +5,7 @@
 #include <QList>
 #include <QVector>
 
-#include "../utils/database-manager.h"
+#include "../database/database-manager.h"
 
 class EntryCommisionsListModel : public QAbstractListModel {
     Q_OBJECT

@@ -4,7 +4,7 @@
 #include <QAbstractItemModel>
 #include <memory>
 
-#include "../applicants-faculty-data/faculty-direction.h"
+#include "../applicants-faculty-priority/faculty-direction.h"
 
 class TreeViewModel : public QAbstractItemModel {
     Q_OBJECT

@@ -1,5 +1,6 @@
 #include "magic-hat.h"
-#include "src/utils/database-manager.h"
+
+#include "../database/database-manager.h"
 
 MagicHat::MagicHat() { m_facultyCells = std::make_shared<QList<FacultyDirection>>(); }
 

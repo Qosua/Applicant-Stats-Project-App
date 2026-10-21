@@ -1,18 +1,18 @@
 
  //  Фоны
-COLOR(backgroundColor, "#26282b", "#ffffff")
-COLOR(panelColor,      "#191a1c", "#ffffff")
-COLOR(surfaceColor,      "#232527", "#ffffff")
-COLOR(surfaceHoverColor,      "#2f3033", "#ffffff")
-COLOR(surfaceSelectedColor,      "#2d374e", "#ffffff")
-COLOR(chartPlotColor,      "#202022", "#ffffff")
-COLOR(cardColor,      "#222326", "#ffffff")
+COLOR(backgroundColor,      "#26282b", "#ffffff")
+COLOR(panelColor,           "#191a1c", "#ffffff")
+COLOR(surfaceColor,         "#232527", "#ffffff")
+COLOR(surfaceHoverColor,    "#2f3033", "#ffffff")
+COLOR(surfaceSelectedColor, "#2d374e", "#ffffff")
+COLOR(chartPlotColor,       "#202022", "#ffffff")
+COLOR(cardColor,            "#222326", "#ffffff")
 
 //  Границы и разделители
-COLOR(borderColor,      "#323232", "#ffffff")
-COLOR(dividerColor,      "#404040", "#ffffff")
-COLOR(chartGridMainColor,      "#3a3a3c", "#ffffff")
-COLOR(chartGridSubColor,      "#222223", "#ffffff")
+COLOR(borderColor,        "#323232", "#ffffff")
+COLOR(dividerColor,       "#404040", "#ffffff")
+COLOR(chartGridMainColor, "#3a3a3c", "#ffffff")
+COLOR(chartGridSubColor,  "#222223", "#ffffff")
 
 // Акценты
 COLOR(accentColor,        "#556da3", "#ffffff")
@@ -55,16 +55,16 @@ COLOR(chartColor4, "#7f9cc4", "#ffffff")
 COLOR(chartColor5, "#a37fc4", "#ffffff")
 
 // Служебные
-COLOR(iconColor,    "#aeaeae", "#ffffff")
-COLOR(iconAltColor, "#ced0d6", "#ffffff")
-COLOR(overlayColor, "#000000", "#ffffff")
+COLOR(iconColor,             "#aeaeae", "#ffffff")
+COLOR(iconAltColor,          "#ced0d6", "#ffffff")
+COLOR(overlayColor,          "#000000", "#ffffff")
 COLOR(progressGradientStart, "#4a8a4a", "#ffffff")
-COLOR(progressGradientEnd, "#7ab87a", "#ffffff")
+COLOR(progressGradientEnd,   "#7ab87a", "#ffffff")
 
 //Цвета ститистики
 COLOR(statisticsPassingColor, "#d4a373", "#ffffff")
 COLOR(statisticsMaximumColor, "#7fb37f", "#ffffff")
 COLOR(statisticsMinimumColor, "#c47878", "#ffffff")
 COLOR(statisticsAverageColor, "#7f9cc4", "#ffffff")
-COLOR(statisticsMedianColor, "#a37fc4", "#ffffff")
+COLOR(statisticsMedianColor,  "#a37fc4", "#ffffff")
 

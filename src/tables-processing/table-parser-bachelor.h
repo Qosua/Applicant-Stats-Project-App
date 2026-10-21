@@ -1,18 +1,19 @@
 #ifndef TABLEPARSERBACHELOR_H
 #define TABLEPARSERBACHELOR_H
 
+#include <xlsxdocument.h>
+
 #include <QDebug>
 #include <QFile>
 #include <QHash>
 #include <QList>
 #include <QMap>
 #include <QTextStream>
-#include <memory>
 #include <expected>
-#include <xlsxdocument.h>
+#include <memory>
 
-#include "applicant.h"
-#include "namespaces.h"
+#include "../applicants-faculty-priority/applicant.h"
+#include "../applicants-faculty-priority/namespaces.h"
 
 enum class TableParserError {
     noError,

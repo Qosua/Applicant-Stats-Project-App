@@ -7,9 +7,9 @@
 #include <QString>
 #include <memory>
 
-#include "../applicants-faculty-data/faculty-direction.h"
-#include "../applicants-faculty-data/table-parser-bachelor.h"
-#include "../utils/app-paths-manager.h"
+#include "../app-utils/app-paths-manager.h"
+#include "../applicants-faculty-priority/faculty-direction.h"
+#include "../tables-processing/table-parser-bachelor.h"
 #include "magic-hat.h"
 
 class CacheManager : public QObject {

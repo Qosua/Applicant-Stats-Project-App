@@ -4,8 +4,8 @@
 #include <QFile>
 #include <memory>
 
-#include "../applicants-faculty-data/applicant.h"
-#include "../applicants-faculty-data/faculty-direction.h"
+#include "../applicants-faculty-priority/applicant.h"
+#include "../applicants-faculty-priority/faculty-direction.h"
 
 class MagicHat {
 public:

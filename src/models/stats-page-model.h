@@ -5,7 +5,7 @@
 #include <QVariantMap>
 #include <memory>
 
-#include "../applicants-faculty-data/faculty-direction.h"
+#include "../applicants-faculty-priority/faculty-direction.h"
 #include "../models/applicants-list-model.h"
 
 namespace StatsConfig {

@@ -5,18 +5,18 @@
 #include <QSortFilterProxyModel>
 #include <QThread>
 
+#include "app-utils/app-paths-manager.h"
+#include "app-utils/logger.h"
+#include "app-utils/qml-helper.h"
 #include "data-processing/cache-manager.h"
+#include "database/database-manager.h"
 #include "models/entry-commisions-list-model.h"
 #include "models/stats-page-model.h"
 #include "models/tables-list-model.h"
 #include "models/tree-view-model.h"
-#include "qml-modules/window-manager.h"
-#include "utils/app-paths-manager.h"
-#include "utils/database-manager.h"
-#include "utils/qml-helper.h"
-#include "utils/logger.h"
-#include "utils/progress-handler.h"
-#include "utils/theme-manager.h"
+#include "theme-managging/theme-manager.h"
+#include "windows-controlling/progress-handler.h"
+#include "windows-controlling/window-manager.h"
 
 /// Метод нужен просто для компактности кода
 /// @param QmlHelper& qmlHelper

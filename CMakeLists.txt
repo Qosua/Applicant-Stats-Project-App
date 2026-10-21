@@ -32,20 +32,20 @@ add_executable(ApplicantStatsProject
         src/data-processing/cache-manager.h
         src/data-processing/magic-hat.h
 
-        src/utils/app-paths-manager.h
-        src/utils/qml-helper.h
-        src/utils/database-manager.h
-        src/utils/scripts.h
-        src/utils/logger.h
-        src/utils/progress-handler.h
+        src/app-utils/app-paths-manager.h
+        src/app-utils/qml-helper.h
+        src/database/database-manager.h
+        src/app-utils/scripts.h
+        src/app-utils/logger.h
+        src/windows-controlling/progress-handler.h
 
-        src/qml-modules/window-manager.h
+        src/windows-controlling/window-manager.h
 
-        src/applicants-faculty-data/table-parser-bachelor.h
-        src/applicants-faculty-data/namespaces.h
-        src/applicants-faculty-data/faculty-direction.h
-        src/applicants-faculty-data/applicant.h
-        src/applicants-faculty-data/priority-info.h
+        src/tables-processing/table-parser-bachelor.h
+        src/applicants-faculty-priority/namespaces.h
+        src/applicants-faculty-priority/faculty-direction.h
+        src/applicants-faculty-priority/applicant.h
+        src/applicants-faculty-priority/priority-info.h
 
         src/models/tree-view-model.h
         src/models/tables-list-model.h
@@ -58,18 +58,18 @@ add_executable(ApplicantStatsProject
         src/data-processing/cache-manager.cpp
         src/data-processing/magic-hat.cpp
 
-        src/utils/app-paths-manager.cpp
-        src/utils/qml-helper.cpp
-        src/utils/database-manager.cpp
-        src/utils/logger.cpp
-        src/utils/progress-handler.cpp
+        src/app-utils/app-paths-manager.cpp
+        src/app-utils/qml-helper.cpp
+        src/database/database-manager.cpp
+        src/app-utils/logger.cpp
+        src/windows-controlling/progress-handler.cpp
 
-        src/qml-modules/window-manager.cpp
+        src/windows-controlling/window-manager.cpp
 
-        src/applicants-faculty-data/table-parser-bachelor.cpp
-        src/applicants-faculty-data/faculty-direction.cpp
-        src/applicants-faculty-data/applicant.cpp
-        src/applicants-faculty-data/priority-info.cpp
+        src/tables-processing/table-parser-bachelor.cpp
+        src/applicants-faculty-priority/faculty-direction.cpp
+        src/applicants-faculty-priority/applicant.cpp
+        src/applicants-faculty-priority/priority-info.cpp
 
         src/models/tree-view-model.cpp
         src/models/tables-list-model.cpp
@@ -78,9 +78,9 @@ add_executable(ApplicantStatsProject
         src/models/entry-commisions-list-model.cpp
 #########################################################
         resources.qrc
-        src/utils/theme-manager.cpp
-        src/utils/theme-manager.h
-        src/utils/theme-colors.def
+        src/theme-managging/theme-manager.cpp
+        src/theme-managging/theme-manager.h
+        src/theme-managging/theme-colors.def
         #########################################################
 )
 

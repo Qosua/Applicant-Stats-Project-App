@@ -4,7 +4,7 @@
 #include <QSqlError>
 #include <QSqlQuery>
 
-#include "app-paths-manager.h"
+#include "../app-utils/app-paths-manager.h"
 
 DataBaseManager& DataBaseManager::instance() {
     static DataBaseManager inst;

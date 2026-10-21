@@ -5,8 +5,8 @@
 #include <QString>
 #include <QVariantList>
 
-#include "../qml-modules/window-manager.h"
-#include "database-manager.h"
+#include "../database/database-manager.h"
+#include "../windows-controlling/window-manager.h"
 
 class QmlHelper : public QObject {
     Q_OBJECT

@@ -1,12 +1,13 @@
 #ifndef APPLICANTSTATSPROJECT_SCRIPTS_H
 #define APPLICANTSTATSPROJECT_SCRIPTS_H
 
+#include <xlsxdocument.h>
+
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QString>
-#include <xlsxdocument.h>
 
-#include "src/applicants-faculty-data/table-parser-bachelor.h"
+#include "../tables-processing/table-parser-bachelor.h"
 
 namespace Scripts {
 void loadDataFromXlsxToDB() {
@@ -35,7 +36,6 @@ void loadDataFromXlsxToDB() {
 
 	query.bindValue(":study_form", int(parser.extractStudyForm(study_form)));
 	query.bindValue(":study_type", int(parser.extractStudyType(study_type)));
-
 	query.bindValue(":kcp_count", doc->read(i, 6).toInt());
 
 	if (!query.exec()) {

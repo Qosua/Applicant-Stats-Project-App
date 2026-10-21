@@ -5,10 +5,10 @@
 #include <QPointer>
 #include <QQmlApplicationEngine>
 #include <QQmlComponent>
-#include <QQuickWindow>
 #include <QQmlContext>
+#include <QQuickWindow>
 
-#include "src/utils/qml-helper.h"
+#include "src/app-utils/qml-helper.h"
 
 class WindowManager : public QObject{
     Q_OBJECT

@@ -1,6 +1,6 @@
 #include "tables-list-model.h"
 
-#include "src/utils/database-manager.h"
+#include "../database/database-manager.h"
 
 TablesListModel::TablesListModel(QObject *parent) : QAbstractListModel(parent) {
 

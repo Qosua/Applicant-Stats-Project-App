@@ -184,7 +184,7 @@ Rectangle {
                         return Colors.surfaceSelectedColor
                     if (delegatHover.hovered)
                         return Colors.surfaceHoverColor
-                    return Colors.surfaceColor
+                    return Colors.surfaceLightColor
                 }
                 Behavior on color {
                     ColorAnimation {

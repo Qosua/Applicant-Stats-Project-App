@@ -1,8 +1,9 @@
 
- //  Фоны
+ //  Фоны #2d2e32
 COLOR(backgroundColor,      "#26282b", "#ffffff")
 COLOR(panelColor,           "#191a1c", "#ffffff")
 COLOR(surfaceColor,         "#232527", "#ffffff")
+COLOR(surfaceLightColor,    "#2d2e32", "#ffffff")
 COLOR(surfaceHoverColor,    "#2f3033", "#ffffff")
 COLOR(surfaceSelectedColor, "#2d374e", "#ffffff")
 COLOR(chartPlotColor,       "#202022", "#ffffff")
@@ -47,12 +48,7 @@ COLOR(warningColor,      "#d4a373", "#ffffff")
 COLOR(infoColor,         "#7f9cc4", "#ffffff")
 COLOR(purpleColor,       "#a37fc4", "#ffffff")
 
-// Семантическая палитра
-COLOR(chartColor1, "#d4a373", "#ffffff")
-COLOR(chartColor2, "#7fb37f", "#ffffff")
-COLOR(chartColor3, "#c47878", "#ffffff")
-COLOR(chartColor4, "#7f9cc4", "#ffffff")
-COLOR(chartColor5, "#a37fc4", "#ffffff")
+
 
 // Служебные
 COLOR(iconColor,             "#aeaeae", "#ffffff")

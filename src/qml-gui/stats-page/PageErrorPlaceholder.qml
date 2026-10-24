@@ -9,6 +9,5 @@ Item {
 
     Rectangle{
         anchors.fill: parent
-        color: Colors.errorColor;
     }
 }

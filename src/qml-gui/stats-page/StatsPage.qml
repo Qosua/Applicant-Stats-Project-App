@@ -118,7 +118,6 @@ SplitView {
             visible: false
 
             height: visible ? 40 : 0
-            color: Colors.errorColor
 
         }
 

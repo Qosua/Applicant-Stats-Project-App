@@ -18,5 +18,7 @@
         <file>resources/icons/plus.png</file>
         <file>resources/icons/angle-down.png</file>
         <file>resources/icons/angle-up.png</file>
+
+        <file>src/database/sql-queries/create-tables.sql</file>
     </qresource>
 </RCC>

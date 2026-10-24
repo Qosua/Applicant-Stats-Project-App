@@ -6,76 +6,64 @@ import ApplicantStatsProjectModule
 
 Rectangle {
     id: pagesMenu
-    width: 48
-    radius: 12
 
-    anchors.top: parent.top
     anchors.bottom: statusBar.top
+    anchors.bottomMargin: 0
     anchors.left: parent.left
     anchors.margins: 10
-    anchors.bottomMargin: 0
-
+    anchors.top: parent.top
     border.color: Colors.borderColor
     border.width: 1
-
     color: Colors.panelColor
+    radius: 12
+    width: 48
 
     ColumnLayout {
-
         property int innerPadding: 6
 
-        spacing: 8
-
+        anchors.bottomMargin: innerPadding
         anchors.fill: parent
         anchors.topMargin: innerPadding
-        anchors.bottomMargin: innerPadding
+        spacing: 8
 
         PageButton {
-            Layout.preferredWidth: parent.width - (parent.innerPadding * 2)
-            Layout.preferredHeight: parent.width - (parent.innerPadding * 2)
             Layout.alignment: Qt.AlignHCenter
-
+            Layout.preferredHeight: parent.width - (parent.innerPadding * 2)
+            Layout.preferredWidth: parent.width - (parent.innerPadding * 2)
             btnIconSource: "qrc:/resources/icons/stats.png"
             btnToolTipName: " Статистика "
-
             isBtnChecked: (window.currentPageIndex === 0)
-            onClicked: {
-                window.currentPageIndex = 0
-            }
 
+            onClicked: {
+                window.currentPageIndex = 0;
+            }
         }
         PageButton {
-            Layout.preferredWidth: parent.width - (parent.innerPadding * 2)
-            Layout.preferredHeight: parent.width - (parent.innerPadding * 2)
             Layout.alignment: Qt.AlignHCenter
-
+            Layout.preferredHeight: parent.width - (parent.innerPadding * 2)
+            Layout.preferredWidth: parent.width - (parent.innerPadding * 2)
             btnIconSource: "qrc:/resources/icons/menu-burger.png"
             btnToolTipName: " Найстройка шаблонов правил приёма "
-
             isBtnChecked: (window.currentPageIndex === 1)
 
             onClicked: {
-                window.currentPageIndex = 1
+                window.currentPageIndex = 1;
             }
-
         }
         Item {
             Layout.fillHeight: true
         }
         PageButton {
-            Layout.preferredWidth: parent.width - (parent.innerPadding * 2)
-            Layout.preferredHeight: parent.width - (parent.innerPadding * 2)
             Layout.alignment: Qt.AlignHCenter
-
+            Layout.preferredHeight: parent.width - (parent.innerPadding * 2)
+            Layout.preferredWidth: parent.width - (parent.innerPadding * 2)
             btnIconSource: "qrc:/resources/icons/settings.png"
             btnToolTipName: " Настройки "
-
             isBtnChecked: (window.currentPageIndex === 2)
+
             onClicked: {
-                window.currentPageIndex = 2
+                window.currentPageIndex = 2;
             }
-
         }
-
     }
 }

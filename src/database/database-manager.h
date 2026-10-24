@@ -6,6 +6,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QFile>
 #include <QVariantList>
 
 class DataBaseManager {
@@ -33,6 +34,8 @@ private:
     DataBaseManager() = default;
 
     bool createDatabase();
+
+    QString readFile(const QString& fileName);
 
     QSqlDatabase m_db;
 };

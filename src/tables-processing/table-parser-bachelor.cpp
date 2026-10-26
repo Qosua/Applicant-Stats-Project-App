@@ -50,7 +50,7 @@ void TableParserBachelor::parseTable() {
 
 	    if (std::expected<QVariant, TableParserError> res = getValueInTable(i, "Телефон");
                 res.has_value())
-	        applicant.setPhoneNumber(res.value().toString());
+		applicant.setPhoneNumber(builtPhoneNumber(res.value().toString()));
 
 
 	    tempHash[applicantId] = applicant;
@@ -198,6 +198,30 @@ std::shared_ptr<QList<Applicant>> TableParserBachelor::getApplicants(
     }
 
     return nullptr;
+}
+
+QString TableParserBachelor::builtPhoneNumber(const QString &number)
+{
+    if(number == "<Пустое значение>") return "<номер не указан>";
+    QSet<QChar> alp = {'1','2','3','4','5','6','7','8','9','0'};
+    QString correctNumber = "+7-@@@-@@@-@@-@@";
+    int currentPlaceIndex = correctNumber.length()-1;
+    for(int i = number.length()-1; i >= 0 and currentPlaceIndex > 0; --i)
+    {
+	    if(correctNumber[currentPlaceIndex] == '@')
+	    {
+		    if(!alp.contains(number[i])) continue;
+
+		    correctNumber[currentPlaceIndex] = number[i];
+		    currentPlaceIndex -=1;
+	    }
+	    else
+	    {
+		    currentPlaceIndex -= 1;
+		    i+=1;
+	    }
+    }
+    return correctNumber;
 }
 
 void TableParserBachelor::readColumnNamesFromDB() {

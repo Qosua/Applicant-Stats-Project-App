@@ -19,6 +19,10 @@
         <file>resources/icons/angle-down.png</file>
         <file>resources/icons/angle-up.png</file>
 
-        <file>src/database/sql-queries/create-tables.sql</file>
+        <file>src/database/sql-queries/create-columns_mapping-table.sql</file>
+        <file>src/database/sql-queries/create-current_table_presets-table.sql</file>
+        <file>src/database/sql-queries/create-entry_commisions-table.sql</file>
+        <file>src/database/sql-queries/create-kcp-indexes.sql</file>
+        <file>src/database/sql-queries/create-kcp-table.sql</file>
     </qresource>
 </RCC>

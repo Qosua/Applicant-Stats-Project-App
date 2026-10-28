@@ -25,6 +25,7 @@ void Logger::logHandler(QtMsgType type, const QMessageLogContext& context, const
 	stream << "[" + QTime::currentTime().toString() + "] ";
 	stream << "(" << context.file << ":" << context.line << ") " << text << "\n";
 	stream.flush();
+
     } else {
 	handleFatal(context, text);
     }

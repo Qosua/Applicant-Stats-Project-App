@@ -215,12 +215,32 @@ bool DataBaseManager::createDatabase() {
 
     QSqlQuery query(m_db);
 
-    if (query.exec(readFile("/sql-queries/create-tables.sql")))
-	return true;
+    if (!query.exec(readFile(":/src/database/sql-queries/create-columns_mapping-table.sql"))) {
+        qCritical()  << "SQL ERROR - DATABASE CREATION FAILED" << query.lastError().text();
+        return false;
+    }
 
-    qCritical()  << "SQL ERROR - DATABASE CREATION FAILED";
+    if (!query.exec(readFile(":/src/database/sql-queries/create-current_table_presets-table.sql"))) {
+        qCritical()  << "SQL ERROR - DATABASE CREATION FAILED" << query.lastError().text();
+        return false;
+    }
 
-    return false;
+    if (!query.exec(readFile(":/src/database/sql-queries/create-entry_commisions-table.sql"))) {
+        qCritical()  << "SQL ERROR - DATABASE CREATION FAILED" << query.lastError().text();
+        return false;
+    }
+
+    if (!query.exec(readFile(":/src/database/sql-queries/create-kcp-table.sql"))) {
+        qCritical()  << "SQL ERROR - DATABASE CREATION FAILED" << query.lastError().text();
+        return false;
+    }
+
+    if (!query.exec(readFile(":/src/database/sql-queries/create-kcp-indexes.sql"))) {
+        qCritical()  << "SQL ERROR - INDEXES CREATION FAILED" << query.lastError().text();
+        return false;
+    }
+
+    return true;
 }
 
 QString DataBaseManager::readFile(const QString& fileName) {

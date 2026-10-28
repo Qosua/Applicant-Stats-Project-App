@@ -1,0 +1,1 @@
+CREATE INDEX IF NOT EXISTS idx_columns_mapping_commision ON columns_mapping(entry_commision_id);

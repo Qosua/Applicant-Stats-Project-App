@@ -48,9 +48,19 @@ void TableParserBachelor::parseTable() {
                 res.has_value())
 	        applicant.setEmail(res.value().toString());
 
-	    if (std::expected<QVariant, TableParserError> res = getValueInTable(i, "Телефон");
-                res.has_value())
-		applicant.setPhoneNumber(builtPhoneNumber(res.value().toString()));
+        if (std::expected<QVariant, TableParserError> res = getValueInTable(i, "Телефон");
+            res.has_value())
+        {
+            phoneNumberBasement.buildPhoneNumber(res.value().toString());
+            if (phoneNumberBasement.isValid())
+            {
+                applicant.setPhoneNumber(phoneNumberBasement.asSimplefiedE164());
+            }
+            else
+            {
+                applicant.setPhoneNumber("<Номер отсутствует>");
+            }
+        }
 
 
 	    tempHash[applicantId] = applicant;
@@ -200,29 +210,8 @@ std::shared_ptr<QList<Applicant>> TableParserBachelor::getApplicants(
     return nullptr;
 }
 
-QString TableParserBachelor::builtPhoneNumber(const QString &number)
-{
-    if(number == "<Пустое значение>") return "<номер не указан>";
-    QSet<QChar> alp = {'1','2','3','4','5','6','7','8','9','0'};
-    QString correctNumber = "+7-@@@-@@@-@@-@@";
-    int currentPlaceIndex = correctNumber.length()-1;
-    for(int i = number.length()-1; i >= 0 and currentPlaceIndex > 0; --i)
-    {
-	    if(correctNumber[currentPlaceIndex] == '@')
-	    {
-		    if(!alp.contains(number[i])) continue;
-
-		    correctNumber[currentPlaceIndex] = number[i];
-		    currentPlaceIndex -=1;
-	    }
-	    else
-	    {
-		    currentPlaceIndex -= 1;
-		    i+=1;
-	    }
-    }
-    return correctNumber;
-}
+//todo remove this code
+QString TableParserBachelor::builtPhoneNumber(const QString &number) { return ""; }
 
 void TableParserBachelor::readColumnNamesFromDB() {
 

@@ -89,7 +89,7 @@ Window {
             id: btnText
             text: btn.text
             color: !btn.enabled ? Colors.textFaintColor
-                : (btn.primary ? Colors.textOnAccentColor : Colors.textLightColor)
+                : (btn.primary ? Colors.textOnAccentColor : Colors.textSecondaryColor)
             font.pixelSize: 14
             font.weight: btn.primary ? Font.Medium : Font.Normal
             horizontalAlignment: Text.AlignHCenter

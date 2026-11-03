@@ -4,8 +4,7 @@
 #include <QPair>
 #include <QVector>
 
-class PhoneNumber
-{
+class PhoneNumber {
 public:
     enum class Country {
 	Unknown,
@@ -209,7 +208,6 @@ public:
     };
 
 private:
-
     // Справочник телефонных кодов (международный формат E.164).
     // Только страны, признанные РФ (включая Абхазию, Южную Осетию, Палестину, Ватикан).
     // Крым и новые регионы указаны как часть России.
@@ -218,9 +216,9 @@ private:
     // Значение: вектор пар (субкод, страна). Субкод -1 означает «страна по умолчанию».
     // Субкод - начало номера после кода страны; сопоставлять нужно по самому длинному совпадению.
 
-    static inline QHash<int,QHash<int,Country>> rgsHshTbl = {
+    static inline QHash<int, QHash<int, Country>> rgsHshTbl = {
         {1,
-         {
+	 {
              {-1, Country::UnitedStates},  // остальные коды региона
              {204, Country::Canada},
              {226, Country::Canada},
@@ -292,7 +290,7 @@ private:
              {868, Country::TrinidadAndTobago},
          }},
         {7,
-         {
+	 {
              {-1, Country::Russia},     // остальные номера
              {6, Country::Kazakhstan},  // 6XX
              {7, Country::Kazakhstan},  // 7XX
@@ -415,7 +413,7 @@ private:
         {378, {{-1, Country::SanMarino}}},
         {379, {{-1, Country::VaticanCity}}},
         {380,
-         {
+	 {
              {-1, Country::Ukraine},  // остальные номера
              {55, Country::Russia},   // Херсонская обл. (552)
              {61, Country::Russia},   // Запорожская обл.
@@ -486,7 +484,7 @@ private:
         {993, {{-1, Country::Turkmenistan}}},
         {994, {{-1, Country::Azerbaijan}}},
         {995,
-         {
+	 {
              {-1, Country::Georgia},       // остальные номера
              {34, Country::SouthOssetia},  // стационарные, +995 34
              {44, Country::Abkhazia},      // историческая нумерация, +995 44
@@ -495,24 +493,24 @@ private:
         {998, {{-1, Country::Uzbekistan}}},
     };
 
-    int regionCode     = -1;
-    int subRegionCode  = -1;
+    int regionCode = -1;
+    int subRegionCode = -1;
     long long nationalNumber = -1;
 
     void dropNumber(const QString& smpfldN);
 
 public:
     void buildPhoneNumber(const QString& strNumber);
-    
+
     int getRegionCode();
     int getSubRegionCode();
     int getNationalNumber();
 
-    QString asSimplefiedE164(); // +<код региона> <уточняющий код региона>/< > <национальный номер>
+    QString asSimplefiedE164();  // +<код региона> <уточняющий код региона>/< > <национальный номер>
 
     bool isValid();
     Country getCountry();
 
-	PhoneNumber() = default;
+    PhoneNumber() = default;
     ~PhoneNumber() = default;
 };

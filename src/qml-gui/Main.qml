@@ -45,8 +45,8 @@ Window {
             color: "#232b40" //заглушка пока без изменения
         }
 
-        Rectangle {
-            color: "#7160a8" //заглушка пока без изменения
+         SettingsPage{
+            id: settingsPage
 
         }
     }

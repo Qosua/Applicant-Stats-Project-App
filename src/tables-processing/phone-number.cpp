@@ -1,4 +1,4 @@
-#include "phone-number.h"
+ï»¿#include "phone-number.h"
 
 void PhoneNumber::dropNumber(const QString& smpfldN) {
     this->nationalNumber = smpfldN.toLongLong();
@@ -14,12 +14,30 @@ void PhoneNumber::buildPhoneNumber(const QString& strNumber) {
 	}
     }
 
+    if (simplefiledNumber.length() < 4)
+    {
+        return;
+    }
+
+    //ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð½Ð° Ñ€Ð¾ÑÑÐ¸Ð¹ÑÐºÐ¸Ð¹ Ð½Ð¾Ð¼ÐµÑ€
+
+
+    if (simplefiledNumber[0] == '8' or simplefiledNumber[0] == '7')
+    {
+        if (simplefiledNumber.length() == 11)
+        {
+            this->regionCode = 7;
+            this->nationalNumber = simplefiledNumber.sliced(1).toLongLong();
+            return;
+        }
+    }
+
     if (strNumber[0] != '+') {
 	dropNumber(simplefiledNumber);
 	return;
     }
 
-    // Ïûòàåìñÿ îïðåäåëèòü êîä ðåãèîãíà ïî ñïèñêó
+    // ÐŸÑ‹Ñ‚Ð°ÐµÐ¼ÑÑ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»Ð¸Ñ‚ÑŒ ÐºÐ¾Ð´ Ñ€ÐµÐ³Ð¸Ð¾Ð³Ð½Ð° Ð¿Ð¾ ÑÐ¿Ð¸ÑÐºÑƒ
     int potentialCode;
     bool flag = false;
     int sliceCount;
@@ -43,7 +61,7 @@ void PhoneNumber::buildPhoneNumber(const QString& strNumber) {
     this->regionCode = potentialCode;
     simplefiledNumber.slice(sliceCount);
 
-    // Ïðîâåðêà íà òî, òðåáóåòñÿ ëè îïðåäåëåíèå óòî÷íÿþùåãî ðåãèîíà
+    // ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð½Ð° Ñ‚Ð¾, Ñ‚Ñ€ÐµÐ±ÑƒÐµÑ‚ÑÑ Ð»Ð¸ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ðµ ÑƒÑ‚Ð¾Ñ‡Ð½ÑÑŽÑ‰ÐµÐ³Ð¾ Ñ€ÐµÐ³Ð¸Ð¾Ð½Ð°
 
     if (this->rgsHshTbl[regionCode].size() == 1) {
 	this->nationalNumber = simplefiledNumber.toLongLong();
@@ -65,7 +83,7 @@ void PhoneNumber::buildPhoneNumber(const QString& strNumber) {
     }
 
     if (!flag) {
-	// íå óäàëîñü ñîïîñòàâèòü óòî÷íÿþùèé ðåãèîí. Âûñòàâëÿåì çíà÷åíèå ïî óìîë÷àíèþ åñëè îíî åñòü
+	// Ð½Ðµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑÐ¾Ð¿Ð¾ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ ÑƒÑ‚Ð¾Ñ‡Ð½ÑÑŽÑ‰Ð¸Ð¹ Ñ€ÐµÐ³Ð¸Ð¾Ð½. Ð’Ñ‹ÑÑ‚Ð°Ð²Ð»ÑÐµÐ¼ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ ÐµÑÐ»Ð¸ Ð¾Ð½Ð¾ ÐµÑÑ‚ÑŒ
 
 	if (this->rgsHshTbl[this->regionCode].find(-1) != this->rgsHshTbl[this->regionCode].end()) {
 	    this->nationalNumber = simplefiledNumber.toLongLong();

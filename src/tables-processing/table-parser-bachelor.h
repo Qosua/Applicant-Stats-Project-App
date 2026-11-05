@@ -12,7 +12,7 @@
 #include <expected>
 #include <memory>
 
-#include "parsing-staff/phone-number.h"
+#include "phone-number.h"
 
 #include "../applicants-faculty-priority/applicant.h"
 #include "../applicants-faculty-priority/namespaces.h"

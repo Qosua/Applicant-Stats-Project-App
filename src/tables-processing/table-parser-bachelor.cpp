@@ -50,7 +50,7 @@ void TableParserBachelor::parseTable() {
 		if (phoneNumberBasement.isValid()) {
 		    applicant.setPhoneNumber(phoneNumberBasement.asSimplefiedE164());
 		} else {
-		    applicant.setPhoneNumber("<Номер отсутствует>");
+		    applicant.setPhoneNumber("<Номер не распознан>");
 		}
 	    }
 

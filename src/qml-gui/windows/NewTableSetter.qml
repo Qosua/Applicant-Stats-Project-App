@@ -13,6 +13,7 @@ Window {
     onAccepted: (tablePath, tableName, preset) => {
         console.log(tablePath, tableName, preset)
         qmlHelper.addTableToAppDataAndDB(tablePath, tableName, preset)
+        qmlHelper.addTableToAppDataAndDB(tablePath, tableName, preset)
     }
 
     title: "Настройки таблицы"

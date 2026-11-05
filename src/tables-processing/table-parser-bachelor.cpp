@@ -1,4 +1,4 @@
-#include "table-parser-bachelor.h"
+﻿#include "table-parser-bachelor.h"
 
 #include "../database/database-manager.h"
 

@@ -107,6 +107,7 @@ qt_add_qml_module(ApplicantStatsProject
         src/qml-gui/components/CustomComboBox.qml
 
         src/qml-gui/windows/NewTableSetter.qml
+        src/qml-gui/windows/SettingsPage.qml
 
 )
 

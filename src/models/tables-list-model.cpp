@@ -108,7 +108,13 @@ void TablesListModel::updateWatcher(const QString &changedPath) {
 	suitableTables += 1;
     }
 
+    if (suitableTables <= 0) 
+    {
+        return;
+    }
+
     beginInsertRows(QModelIndex(), 0, suitableTables - 1);
+
     for (const QString &tableName : currentFiles) {
 
 	int entryCommisionID

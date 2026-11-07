@@ -12,6 +12,8 @@
 #include <expected>
 #include <memory>
 
+#include "phone-number.h"
+
 #include "../applicants-faculty-priority/applicant.h"
 #include "../applicants-faculty-priority/namespaces.h"
 
@@ -28,6 +30,9 @@ public:
     void parseTable();
     std::shared_ptr<QList<Applicant>> getApplicants(ApplicantsFilterFlags flag,
                                                     StudyType priorityToDelete) const;
+
+    //todo remove this method
+    QString builtPhoneNumber(const QString& number);
 
     void readColumnNamesFromDB();
     void setEntryCommisionInfo(const QString& entryCommisionName, bool isBachelor, int year);
@@ -47,6 +52,8 @@ public:
     QMap<QString, int> m_columnsNames;
     std::unique_ptr<QXlsx::Document> m_applicantsTable;
     std::shared_ptr<QList<Applicant>> m_applicantsList;
+
+    PhoneNumber phoneNumberBasement;
 };
 
 #endif  // TABLEPARSERBACHELOR_H

@@ -4,8 +4,7 @@
 #include <QPair>
 #include <QVector>
 
-class PhoneNumber 
-{
+class PhoneNumber {
     QString parsedNumber;
     bool valid = false;
 

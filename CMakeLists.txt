@@ -80,6 +80,8 @@ add_executable(ApplicantStatsProject
         resources.qrc
         src/theme-managging/theme-manager.cpp
         src/theme-managging/theme-manager.h
+        src/app-utils/TableConverter.cpp
+        src/app-utils/TableConverter.h
         #########################################################
 )
 
@@ -107,6 +109,7 @@ qt_add_qml_module(ApplicantStatsProject
         src/qml-gui/components/CustomComboBox.qml
 
         src/qml-gui/windows/NewTableSetter.qml
+        src/qml-gui/windows/SettingsPage.qml
 
 )
 

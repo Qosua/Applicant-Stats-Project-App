@@ -14,7 +14,7 @@ void QmlHelper::openFolder(const QString &path) {
 }
 
 void QmlHelper::openAppCacheFolder() {
-    QDesktopServices::openUrl(QUrl(AppPathsManager::appCachePath));
+    QDesktopServices::openUrl(QUrl(AppPathsManager::cachePath));
 }
 
 void QmlHelper::addNewTableFromExploler() {
@@ -51,12 +51,12 @@ void QmlHelper::addNewTable(const QString &tableFullPath) {
 
 void QmlHelper::addTableToAppDataAndDB(QString tablePath, QString tableName, int currentCommisionIndex) {
 
-    QString dest = AppPathsManager::appDataPath + "/" + tablePath.split('/').last();
+    QString dest = AppPathsManager::tablesStoragePath + "/" + tablePath.split('/').last();
 
     if (QFile::exists(dest))
         QFile::remove(dest);
 
-    dest = AppPathsManager::appDataPath + "/" + tableName;
+    dest = AppPathsManager::tablesStoragePath + "/" + tableName;
 
     QFile::copy(tablePath, dest);
 

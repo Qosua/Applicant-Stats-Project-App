@@ -8,17 +8,17 @@ class AppPathsManager {
 public:
     AppPathsManager();
 
-    static void init();
+    static bool init();
 
 signals:
     void initCacheManager();
 
 public:
-    static const QString appDbPath;
-    static const QString appRootDataPath;
-    static const QString appDataPath;
-    static const QString appCachePath;
-    static const QString appLogsPath;
+    static const QString dbPath;
+    static const QString rootAppDataPath;
+    static const QString tablesStoragePath;
+    static const QString cachePath;
+    static const QString logsPath;
     static const QString downloadPath;
 };
 

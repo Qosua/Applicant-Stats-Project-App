@@ -64,7 +64,7 @@ Button {
 
         contentItem: Text {
             text: btnToolTipName
-            color: Colors.textOnAccentColor
+            color: Colors.textPrimaryColor
             font.pixelSize: 15
         }
 

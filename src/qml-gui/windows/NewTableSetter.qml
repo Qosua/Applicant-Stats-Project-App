@@ -13,6 +13,7 @@ Window {
     onAccepted: (tablePath, tableName, preset) => {
         console.log(tablePath, tableName, preset)
         qmlHelper.addTableToAppDataAndDB(tablePath, tableName, preset)
+        qmlHelper.addTableToAppDataAndDB(tablePath, tableName, preset)
     }
 
     title: "Настройки таблицы"
@@ -89,7 +90,7 @@ Window {
             id: btnText
             text: btn.text
             color: !btn.enabled ? Colors.textFaintColor
-                : (btn.primary ? Colors.textOnAccentColor : Colors.textLightColor)
+                : (btn.primary ? Colors.textOnAccentColor : Colors.textSecondaryColor)
             font.pixelSize: 14
             font.weight: btn.primary ? Font.Medium : Font.Normal
             horizontalAlignment: Text.AlignHCenter

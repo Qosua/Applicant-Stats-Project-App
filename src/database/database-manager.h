@@ -35,7 +35,8 @@ private:
 
     bool createDatabase();
 
-    QString readFile(const QString& fileName);
+    static QString getQueryText(const QString& fileName);
+    bool fillDefaultData();
 
     QSqlDatabase m_db;
 };

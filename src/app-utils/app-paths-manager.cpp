@@ -1,50 +1,55 @@
 #include <QDebug>
 #include <QDir>
+#include <QFile>
 #include <QStandardPaths>
 
 #include "app-paths-manager.h"
 
-const QString AppPathsManager::appDbPath
-    = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)
-      + "/Applicants-Stats-Project/database.db";
+namespace {
+const QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+}
 
-const QString AppPathsManager::appRootDataPath
-    = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)
-      + "/Applicants-Stats-Project";
-
-const QString AppPathsManager::appDataPath
-    = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)
-      + "/Applicants-Stats-Project/data";
-
-const QString AppPathsManager::appCachePath
-    = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)
-      + "/Applicants-Stats-Project/cache";
-
-const QString AppPathsManager::appLogsPath
-    = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)
-      + "/Applicants-Stats-Project/logs";
-
-const QString AppPathsManager::downloadPath
-    = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
+const QString AppPathsManager::rootAppDataPath   = appDataPath + "/Applicants-Stats-Project";
+const QString AppPathsManager::dbPath            = appDataPath + "/Applicants-Stats-Project/database.db";
+const QString AppPathsManager::tablesStoragePath = appDataPath + "/Applicants-Stats-Project/data";
+const QString AppPathsManager::cachePath         = appDataPath + "/Applicants-Stats-Project/cache";
+const QString AppPathsManager::logsPath          = appDataPath + "/Applicants-Stats-Project/logs";
+const QString AppPathsManager::downloadPath      = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
 
 AppPathsManager::AppPathsManager() {}
 
-void AppPathsManager::init() {
+bool AppPathsManager::init() {
 
     bool result = true;
 
-    if (!QDir().exists(AppPathsManager::appRootDataPath))
-        result *= QDir().mkdir(AppPathsManager::appRootDataPath);
+    if (!QDir().mkpath(rootAppDataPath)) {
+        qCritical() << "AppPathsManager: failed to create root dir:" << rootAppDataPath;
+        result = false;
+    }
 
-    if (!QDir().exists(AppPathsManager::appCachePath))
-        result *= QDir().mkdir(AppPathsManager::appCachePath);
+    // if (!QDir().mkpath(cachePath)) {
+    //     qCritical() << "AppPathsManager: failed to create cache dir:" << cachePath;
+    //     result = false;
+    // }
 
-    if (!QDir().exists(AppPathsManager::appDataPath))
-        result *= QDir().mkdir(appDataPath);
+    if (!QDir().mkpath(tablesStoragePath)) {
+        qCritical() << "AppPathsManager: failed to create tables storage dir:" << tablesStoragePath;
+        result = false;
+    }
 
-    if(!QDir().exists(AppPathsManager::appLogsPath))
-	    result *= QDir().mkdir(AppPathsManager::appLogsPath);
+    if (!QDir().mkpath(logsPath)) {
+        qCritical() << "AppPathsManager: failed to create logs dir:" << logsPath;
+        result = false;
+    }
 
-    if (!result)
-        qDebug() << "AppPathsManager INIT ERROR";
+    if (!QFile::exists(dbPath)) {
+        qDebug() << "AppPathsManager: database file does not exist yet, will be created:" << dbPath;
+    }
+
+    if (result)
+        qDebug() << "AppPathsManager: init OK, root:" << rootAppDataPath;
+    else
+        qCritical() << "AppPathsManager: INIT ERROR";
+
+    return result;
 }

@@ -64,9 +64,10 @@ int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
 
     //----Системные утилиты------------------------------------------
-    AppPathsManager::init();            // менеджер путей
-    DataBaseManager::instance().init(); // менеджер БД
-
+    // менеджер путей
+    if (!AppPathsManager::init()) return 1;
+    // менеджер БД
+    if (!DataBaseManager::instance().init()) return 1;
     
     //----Система логирования----------------------------------------
     Logger::initLog();
@@ -74,7 +75,7 @@ int main(int argc, char* argv[]) {
     SetConsoleOutputCP(1251);
     qInstallMessageHandler(Logger::logHandler);
 
-    //----Потоки ----------------------------------------------------
+    //----Поток кэша-------------------------------------------------
     QThread cacheThread;
 
     //----Компоненты логики и представления--------------------------

@@ -45,14 +45,9 @@ void TableParserBachelor::parseTable() {
 	    if (std::expected<QVariant, TableParserError> res = getValueInTable(i, "E-mail"); res.has_value())
 		applicant.setEmail(res.value().toString());
 
-	    if (std::expected<QVariant, TableParserError> res = getValueInTable(i, "Телефон"); res.has_value()) {
-		phoneNumberBasement.buildPhoneNumber(res.value().toString());
-		if (phoneNumberBasement.isValid()) {
-		    applicant.setPhoneNumber(phoneNumberBasement.asSimplefiedE164());
-		} else {
-		    applicant.setPhoneNumber("<Номер не распознан>");
-		}
-	    }
+	    if (std::expected<QVariant, TableParserError> res = getValueInTable(i, "Телефон"); res.has_value())
+		applicant.setPhoneNumber(res->toString());
+
 
 	    tempHash[applicantId] = applicant;
 	}

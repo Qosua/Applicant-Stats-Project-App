@@ -80,6 +80,8 @@ add_executable(ApplicantStatsProject
         resources.qrc
         src/theme-managging/theme-manager.cpp
         src/theme-managging/theme-manager.h
+        src/app-utils/TableConverter.cpp
+        src/app-utils/TableConverter.h
         #########################################################
 )
 

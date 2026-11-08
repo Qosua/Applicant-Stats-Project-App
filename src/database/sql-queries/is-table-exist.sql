@@ -1,0 +1,1 @@
+SELECT EXISTS(SELECT 1 FROM current_table_presets WHERE tableName = :tableName);

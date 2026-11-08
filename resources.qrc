@@ -19,10 +19,18 @@
         <file>resources/icons/angle-down.png</file>
         <file>resources/icons/angle-up.png</file>
 
+        <file>src/database/sql-queries/change-table_preset_current_id.sql</file>
+        <file>src/database/sql-queries/create-columns_mapping-indexes.sql</file>
         <file>src/database/sql-queries/create-columns_mapping-table.sql</file>
         <file>src/database/sql-queries/create-current_table_presets-table.sql</file>
         <file>src/database/sql-queries/create-entry_commisions-table.sql</file>
         <file>src/database/sql-queries/create-kcp-indexes.sql</file>
         <file>src/database/sql-queries/create-kcp-table.sql</file>
+        <file>src/database/sql-queries/get-columns_names.sql</file>
+        <file>src/database/sql-queries/get-entry_commisions-list.sql</file>
+        <file>src/database/sql-queries/get-kcp.sql</file>
+        <file>src/database/sql-queries/get-table_preset_current_id.sql</file>
+        <file>src/database/sql-queries/insert-current_table_preset.sql</file>
+        <file>src/database/sql-queries/is-table-exist.sql</file>
     </qresource>
 </RCC>

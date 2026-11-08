@@ -10,7 +10,7 @@ void Logger::initLog() {
     // unix_t for naming log file for each program session
     quint64 unix_t = QDateTime::currentSecsSinceEpoch();
 
-    logFile.setFileName(AppPathsManager::appLogsPath + "/" + QString(__DATE__).replace(" ", "-")
+    logFile.setFileName(AppPathsManager::logsPath + "/" + QString(__DATE__).replace(" ", "-")
                         + "_" + QString::number(unix_t) + ".log");
     logFile.open(QIODevice::ReadOnly | QIODevice::Append | QIODevice::Text);
 

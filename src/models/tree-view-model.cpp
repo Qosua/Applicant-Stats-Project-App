@@ -8,8 +8,6 @@ TreeViewModel::~TreeViewModel() { delete m_rootNode; }
 
 void TreeViewModel::setFaculties(std::shared_ptr<QList<FacultyDirection>> faculties) {
 
-    TableConverter::toTableForBot(*faculties, "C:/test.xlsx");
-
     beginResetModel();
     m_faculties = faculties;
     buildTree();

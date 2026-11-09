@@ -194,9 +194,6 @@ std::shared_ptr<QList<Applicant>> TableParserBachelor::getApplicants(ApplicantsF
     return nullptr;
 }
 
-// todo remove this code
-QString TableParserBachelor::builtPhoneNumber(const QString& number) { return ""; }
-
 void TableParserBachelor::readColumnNamesFromDB() {
 
     QList<QString> columnNames = DataBaseManager::instance().getEntryCommisionColumnsNamesListFromDb(

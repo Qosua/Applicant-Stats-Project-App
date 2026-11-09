@@ -31,9 +31,6 @@ public:
     std::shared_ptr<QList<Applicant>> getApplicants(ApplicantsFilterFlags flag,
                                                     StudyType priorityToDelete) const;
 
-    //todo remove this method
-    QString builtPhoneNumber(const QString& number);
-
     void readColumnNamesFromDB();
     void setEntryCommisionInfo(const QString& entryCommisionName, bool isBachelor, int year);
     std::expected<QVariant, TableParserError> getValueInTable(const int rowIndex, const QString& columnName) const;

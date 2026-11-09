@@ -23,16 +23,26 @@ enum class TableParserError {
     noSuchColumn,
 };
 
-class TableParserBachelor {
+namespace {
+const char* parseErrorName(TableParserError err) {
+    switch (err) {
+        case TableParserError::noSuchColumn: return "noSuchColumn";
+        case TableParserError::valueError:   return "valueError";
+        case TableParserError::noError:      return "noError";
+    }
+    return "unknown";
+}
+}
+
+typedef std::expected<QVariant, TableParserError> ParseResult;
+
+gi class TableParserBachelor {
 
 public:
     void setTablePath(const QString& path);
     void parseTable();
     std::shared_ptr<QList<Applicant>> getApplicants(ApplicantsFilterFlags flag,
                                                     StudyType priorityToDelete) const;
-
-    //todo remove this method
-    QString builtPhoneNumber(const QString& number);
 
     void readColumnNamesFromDB();
     void setEntryCommisionInfo(const QString& entryCommisionName, bool isBachelor, int year);

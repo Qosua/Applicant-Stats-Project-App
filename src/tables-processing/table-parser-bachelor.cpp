@@ -5,7 +5,7 @@
 void TableParserBachelor::setTablePath(const QString& path) {
 
     if (!QFile::exists(path)) {
-	qDebug() << "CAN NOT FIND TABLE FILE" << path << __FILE__ << ":" << __LINE__;
+	qWarning() << "Can not find table" << path;
 	return;
     }
     m_tablePath = path;
@@ -21,120 +21,156 @@ void TableParserBachelor::parseTable() {
     QHash<int, Applicant> tempHash;
     int applicantId = 0;
 
+    int rowsTotal = 0;
+    int rowsNotAdmitted = 0;
+    int rowsSkipped = 0;
+    int prioritiesAdded = 0;
+    QMap<QString, QMap<TableParserError, int>> errorStats;  // column -> error -> count
+
+    auto reportError = [&](int row, const QString& column, TableParserError err) {
+        if (++errorStats[column][err] == 1)
+            qWarning() << "TableParser: " << parseErrorName(err) << " in column " << column
+                       << " - first at row " << row;
+    };
+
     for (int i = 2; m_applicantsTable->read(i, 1).isValid(); ++i) {
 
-	if (std::expected<QVariant, TableParserError> res = getValueInTable(i, "Допущен до конкурса");
-	    res.has_value() and res.value().toString().toLower() == "нет")
-	    continue;
+        rowsTotal += 1;
 
-	if (std::expected<QVariant, TableParserError> res = getValueInTable(i, "Уникальный код"); res.has_value())
-	    applicantId = res.value().toInt();
-	else {
-	    qCritical() << __FUNCTION__ << "READING ID ISSUE" << "row index: " << i;
-	    continue;
-	}
+        if (ParseResult res = getValueInTable(i, "Допущен до конкурса"); !res.has_value())
+            reportError(i, "Допущен до конкурса", res.error());
+        else if (res.value().toString().toLower() == "нет") {
+            rowsNotAdmitted += 1;
+            continue;
+        }
 
-	if (!tempHash.contains(applicantId)) {
+        if (ParseResult res = getValueInTable(i, "Уникальный код"); res.has_value())
+            applicantId = res.value().toInt();
+        else {
+            reportError(i, "Уникальный код", res.error());
+            rowsSkipped += 1;
+            continue;
+        }
 
-	    Applicant applicant;
-	    applicant.setId(applicantId);
+        if (!tempHash.contains(applicantId)) {
 
-	    if (std::expected<QVariant, TableParserError> res = getValueInTable(i, "ФИО"); res.has_value())
-		applicant.setFIO(res.value().toString());
+            Applicant applicant;
+            applicant.setId(applicantId);
 
-	    if (std::expected<QVariant, TableParserError> res = getValueInTable(i, "E-mail"); res.has_value())
-		applicant.setEmail(res.value().toString());
+            if (ParseResult res = getValueInTable(i, "ФИО"); res.has_value())
+                applicant.setFIO(res.value().toString());
+            else
+                reportError(i, "ФИО", res.error());
 
-	    if (std::expected<QVariant, TableParserError> res = getValueInTable(i, "Телефон"); res.has_value())
-		applicant.setPhoneNumber(res->toString());
+            if (ParseResult res = getValueInTable(i, "E-mail"); res.has_value())
+                applicant.setEmail(res.value().toString());
+            else
+                reportError(i, "E-mail", res.error());
 
+            if (ParseResult res = getValueInTable(i, "Телефон"); res.has_value())
+                applicant.setPhoneNumber(res->toString());
+            else
+                reportError(i, "Телефон", res.error());
 
-	    tempHash[applicantId] = applicant;
-	}
+            tempHash[applicantId] = applicant;
+        }
 
-	PriorityInfo info;
+        PriorityInfo info;
 
-	if (std::expected<QVariant, TableParserError> res = getValueInTable(i, "Сумма баллов"); res.has_value())
-	    info.setEgeScore(res.value().toInt());
-	else {
-	    qCritical() << __FUNCTION__ << "READING PRIORITY ISSUE" << "row index: " << i;
-	    continue;
-	}
+        if (ParseResult res = getValueInTable(i, "Сумма баллов"); res.has_value())
+            info.setEgeScore(res.value().toInt());
+        else {
+            reportError(i, "Сумма баллов", res.error());
+            rowsSkipped += 1;
+            continue;
+        }
 
-	if (std::expected<QVariant, TableParserError> res = getValueInTable(i, "Сумма баллов за инд.дост.(конкурсные)");
-	    res.has_value())
-	    info.setEgeAdditionalScore(res.value().toInt());
-	else {
-	    qCritical() << __FUNCTION__ << "READING PRIORITY ISSUE" << "row index: " << i;
-	    continue;
-	}
+        if (ParseResult res = getValueInTable(i, "Сумма баллов за инд.дост.(конкурсные)");
+            res.has_value())
+            info.setEgeAdditionalScore(res.value().toInt());
+        else {
+            reportError(i, "Сумма баллов за инд.дост.(конкурсные)", res.error());
+            rowsSkipped += 1;
+            continue;
+        }
 
-	if (std::expected<QVariant, TableParserError> res = getValueInTable(i, "Приоритет"); res.has_value())
-	    info.setPriorityNumber(res.value().toInt());
-	else {
-	    qCritical() << __FUNCTION__ << "READING PRIORITY ISSUE" << "row index: " << i;
-	    continue;
-	}
+        if (ParseResult res = getValueInTable(i, "Приоритет"); res.has_value())
+            info.setPriorityNumber(res.value().toInt());
+        else {
+            reportError(i, "Приоритет", res.error());
+            rowsSkipped += 1;
+            continue;
+        }
 
-	if (std::expected<QVariant, TableParserError> res = getValueInTable(i, "Предмет 1"); res.has_value())
-	    info.addSubject(res.value().toInt());
-	else {
-	    info.addSubject(0);
-	}
+        if (ParseResult res = getValueInTable(i, "Предмет 1"); res.has_value())
+            info.addSubject(res.value().toInt());
+        else {
+            reportError(i, "Предмет 1", res.error());
+            info.addSubject(-1);
+        }
 
-	if (std::expected<QVariant, TableParserError> res = getValueInTable(i, "Предмет 2"); res.has_value())
-	    info.addSubject(res.value().toInt());
-	else {
-	    info.addSubject(0);
-	}
+        if (ParseResult res = getValueInTable(i, "Предмет 2"); res.has_value())
+            info.addSubject(res.value().toInt());
+        else {
+            reportError(i, "Предмет 2", res.error());
+            info.addSubject(-1);
+        }
 
-	if (std::expected<QVariant, TableParserError> res = getValueInTable(i, "Предмет 3"); res.has_value())
-	    info.addSubject(res.value().toInt());
-	else {
-	    info.addSubject(0);
-	}
+        if (ParseResult res = getValueInTable(i, "Предмет 3"); res.has_value())
+            info.addSubject(res.value().toInt());
+        else {
+            reportError(i, "Предмет 3", res.error());
+            info.addSubject(-1);
+        }
 
-	QString priorityFullName;
-	if (std::expected<QVariant, TableParserError> res = getValueInTable(i, "Конкурсная группа"); res.has_value())
-	    priorityFullName = res.value().toString();
-	else {
-	    qCritical() << __FUNCTION__ << "READING PRIORITY ISSUE" << "row index: " << i;
-	    continue;
-	}
+        QString priorityFullName;
+        if (ParseResult res = getValueInTable(i, "Конкурсная группа"); res.has_value())
+            priorityFullName = res.value().toString();
+        else {
+            reportError(i, "Конкурсная группа", res.error());
+            rowsSkipped += 1;
+            continue;
+        }
 
-	info.setCode(extractCode(priorityFullName));
-	info.setName(extractName(priorityFullName));
-	info.setStudyForm(extractStudyForm(priorityFullName));
-	info.setStudyType(extractStudyType(priorityFullName));
-	info.setId(applicantId);
+        info.setCode(extractCode(priorityFullName));
+        info.setName(extractName(priorityFullName));
+        info.setStudyForm(extractStudyForm(priorityFullName));
+        info.setStudyType(extractStudyType(priorityFullName));
+        info.setId(applicantId);
 
-	if (std::expected<QVariant, TableParserError> res = getValueInTable(i, "Согласие на зачисление");
-	    res.has_value())
-	    info.setAdmissionFlag((res.value().toString().toLower() == "да" ? true : false));
-	else {
-	    qCritical() << __FUNCTION__ << "READING PRIORITY ISSUE" << "row index: " << i;
-	    continue;
-	}
+        if (ParseResult res = getValueInTable(i, "Согласие на зачисление"); res.has_value())
+            info.setAdmissionFlag(res.value().toString().toLower() == "да");
+        else {
+            reportError(i, "Согласие на зачисление", res.error());
+            rowsSkipped += 1;
+            continue;
+        }
 
-	if (std::expected<QVariant, TableParserError> res = getValueInTable(i, "Без вступительных испытаний");
-	    res.has_value())
-	    info.setIsBVI((res.value().toString().toLower() == "да" ? true : false));
-	else {
-	    qCritical() << __FUNCTION__ << "READING PRIORITY ISSUE" << "row index: " << i;
-	    continue;
-	}
+        if (ParseResult res = getValueInTable(i, "Без вступительных испытаний"); res.has_value())
+            info.setIsBVI(res.value().toString().toLower() == "да");
+        else
+            reportError(i, "Без вступительных испытаний", res.error());
 
-	if (std::expected<QVariant, TableParserError> res = getValueInTable(i, "Имя факультета"); res.has_value())
-	    info.setDivision(res.value().toString());
-	else {
-	    qCritical() << __FUNCTION__ << "READING PRIORITY ISSUE" << "row index: " << i;
-	    continue;
-	}
+        if (ParseResult res = getValueInTable(i, "Имя факультета"); res.has_value())
+            info.setDivision(res.value().toString());
+        else
+            reportError(i, "Имя факультета", res.error());
 
-	tempHash[applicantId].addPriority(info);
+        tempHash[applicantId].addPriority(info);
+        prioritiesAdded += 1;
     }
 
     *m_applicantsList = tempHash.values();
+
+    // ---- Summary ----
+    qInfo() << "TableParser summary:" << m_tablePath << "| rows:" << rowsTotal
+            << "| applicants:" << m_applicantsList->size() << "| priorities added:" << prioritiesAdded
+            << "| not admitted:" << rowsNotAdmitted << "| skipped by errors:" << rowsSkipped;
+
+    for (auto col = errorStats.cbegin(); col != errorStats.cend(); ++col)
+        for (auto err = col->cbegin(); err != col->cend(); ++err)
+            qWarning() << "TableParser:" << parseErrorName(err.key()) << "in column" << col.key()
+                       << "-" << err.value() << "of" << rowsTotal << "rows";
 }
 
 std::shared_ptr<QList<Applicant>> TableParserBachelor::getApplicants(ApplicantsFilterFlags flag,
@@ -188,9 +224,6 @@ std::shared_ptr<QList<Applicant>> TableParserBachelor::getApplicants(ApplicantsF
 
     return nullptr;
 }
-
-// todo remove this code
-QString TableParserBachelor::builtPhoneNumber(const QString& number) { return ""; }
 
 void TableParserBachelor::readColumnNamesFromDB() {
 
@@ -291,7 +324,7 @@ void TableParserBachelor::setEntryCommisionInfo(const QString& entryCommisionNam
     m_year = year;
 }
 
-std::expected<QVariant, TableParserError> TableParserBachelor::getValueInTable(const int rowIndex,
+ParseResult TableParserBachelor::getValueInTable(const int rowIndex,
                                                                                const QString& columnName) const {
 
     if (m_columnsNames[columnName] == -1)

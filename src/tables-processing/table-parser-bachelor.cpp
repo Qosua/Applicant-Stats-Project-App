@@ -67,10 +67,18 @@ void TableParserBachelor::parseTable() {
             else
                 reportError(i, "E-mail", res.error());
 
-            if (ParseResult res = getValueInTable(i, "Телефон"); res.has_value())
-                applicant.setPhoneNumber(res->toString());
-            else
+            if (ParseResult res = getValueInTable(i, "Телефон"); res.has_value()) {
+                phoneNumberBasement.buildPhoneNumber(res.value().toString());
+                if (phoneNumberBasement.isValid()) {
+                    applicant.setPhoneNumber(phoneNumberBasement.number());
+                } else {
+                    applicant.setPhoneNumber("<Номер не распознан>");
+                }
+            }
+            else {
                 reportError(i, "Телефон", res.error());
+                applicant.setPhoneNumber("<Номер не распознан>");
+            }
 
             tempHash[applicantId] = applicant;
         }

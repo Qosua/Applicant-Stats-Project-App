@@ -36,7 +36,7 @@ const char* parseErrorName(TableParserError err) {
 
 typedef std::expected<QVariant, TableParserError> ParseResult;
 
-gi class TableParserBachelor {
+class TableParserBachelor {
 
 public:
     void setTablePath(const QString& path);

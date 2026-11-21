@@ -2,17 +2,20 @@
 
 ThemeManager::ThemeManager(QObject *parent) : QObject(parent) {}
 
-bool ThemeManager::isLightTheme() const { return m_isLightTheme; }
-
-void ThemeManager::setLightTheme(bool enabled) {
-
-    if (m_isLightTheme == enabled) {
+ThemeManager::Theme ThemeManager::currentTheme() const
+{
+    return m_currentTheme;
+}
+void ThemeManager::setCurrentTheme(Theme theme)
+{
+    if (m_currentTheme == theme) {
         return;
     }
 
-    m_isLightTheme = enabled;
+    m_currentTheme = theme;
     emit themeChanged();
 }
+
 
 
 

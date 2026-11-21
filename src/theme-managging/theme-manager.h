@@ -23,8 +23,8 @@ public: \
     //  Фоны
     APP_COLOR(backgroundColor,      "#26282b", "#e8edf4")
     APP_COLOR(panelColor,           "#191a1c", "#f2f5fa")
-    APP_COLOR(surfaceColor,         "#232527", "#ffffff")
-    APP_COLOR(surfaceLightColor,    "#2d2e32", "#edf1f7")
+    APP_COLOR(surfaceColor,         "#232527", "#f2f2f2")
+    APP_COLOR(surfaceLightColor,    "#2d2e32", "#e9ecf2")
     APP_COLOR(surfaceHoverColor,    "#2f3033", "#e5ebf4")
     APP_COLOR(surfaceSelectedColor, "#2d374e", "#dce5f3")
     APP_COLOR(chartPlotColor,       "#202022", "#f4f6fa")
@@ -41,7 +41,7 @@ public: \
     APP_COLOR(accentHoverColor,   "#5f79b8", "#637daf")
     APP_COLOR(accentPressedColor, "#48619c", "#455d91")
     APP_COLOR(accentLightColor,   "#6e8cd1", "#8298c2")
-    APP_COLOR(accentMutedColor,   "#607ab5", "#cfd6e3")
+    APP_COLOR(accentMutedColor,   "#607ab5", "#bac0cc")
 
     // Текст
     APP_COLOR(textPrimaryColor,     "#eeeeee", "#252c38")

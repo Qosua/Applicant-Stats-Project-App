@@ -14,6 +14,7 @@ void QmlHelper::openFolder(const QString &path) {
 }
 
 void QmlHelper::openAppCacheFolder() {
+    qDebug() << "openAppCacheFolder";
     QDesktopServices::openUrl(QUrl(AppPathsManager::cachePath));
 }
 

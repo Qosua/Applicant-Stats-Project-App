@@ -104,6 +104,7 @@ Rectangle {
 
                 onClicked: {
                     qmlHelper.openAppCacheFolder();
+                    console.log("asdasdasd");
                 }
 
             }

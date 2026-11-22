@@ -43,6 +43,7 @@ add_executable(ApplicantStatsProject
 
         src/tables-processing/table-parser-bachelor.h
         src/tables-processing/phone-number.h
+
         src/applicants-faculty-priority/namespaces.h
         src/applicants-faculty-priority/faculty-direction.h
         src/applicants-faculty-priority/applicant.h
@@ -69,6 +70,7 @@ add_executable(ApplicantStatsProject
 
         src/tables-processing/table-parser-bachelor.cpp
         src/tables-processing/phone-number.cpp
+
         src/applicants-faculty-priority/faculty-direction.cpp
         src/applicants-faculty-priority/applicant.cpp
         src/applicants-faculty-priority/priority-info.cpp

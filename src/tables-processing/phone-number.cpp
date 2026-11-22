@@ -26,14 +26,14 @@ QString PhoneNumber::buildPhoneNumber(const QString &strNumber)
             res += simplified.sliced(9, 2);
 
             parsedNumber = res;
-            return number();
+            return parsedNumber;
         }
     }
 
     return simplified;
 }
 
-QString PhoneNumber::number()
+const QString& PhoneNumber::number()
 {
     return parsedNumber;
 }

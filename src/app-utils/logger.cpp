@@ -1,5 +1,4 @@
 #include "logger.h"
-
 #include "app-paths-manager.h"
 
 void Logger::initLog() {
@@ -25,6 +24,7 @@ void Logger::logHandler(QtMsgType type, const QMessageLogContext& context, const
 	stream << "[" + QTime::currentTime().toString() + "] ";
 	stream << "(" << context.file << ":" << context.line << ") " << text << "\n";
 	stream.flush();
+
 
     } else {
 	handleFatal(context, text);

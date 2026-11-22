@@ -5,17 +5,6 @@
 
 #include "app-paths-manager.h"
 
-namespace {
-const QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-}
-
-const QString AppPathsManager::rootAppDataPath = appDataPath + "/Applicants-Stats-Project";
-const QString AppPathsManager::dbPath = appDataPath + "/Applicants-Stats-Project/database.db";
-const QString AppPathsManager::tablesStoragePath = appDataPath + "/Applicants-Stats-Project/data";
-const QString AppPathsManager::cachePath = appDataPath + "/Applicants-Stats-Project/cache";
-const QString AppPathsManager::logsPath = appDataPath + "/Applicants-Stats-Project/logs";
-const QString AppPathsManager::downloadPath = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
-
 AppPathsManager::AppPathsManager() {}
 
 bool AppPathsManager::init()
@@ -27,10 +16,10 @@ bool AppPathsManager::init()
         result = false;
     }
 
-    // if (!QDir().mkpath(cachePath)) {
-    //     qCritical() << "AppPathsManager: failed to create cache dir:" << cachePath;
-    //     result = false;
-    // }
+    if (!QDir().mkpath(cachePath)) {
+        qCritical() << "AppPathsManager: failed to create cache dir:" << cachePath;
+        result = false;
+    }
 
     if (!QDir().mkpath(tablesStoragePath)) {
         qCritical() << "AppPathsManager: failed to create tables storage dir:" << tablesStoragePath;

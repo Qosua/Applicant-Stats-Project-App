@@ -10,7 +10,7 @@ class PhoneNumber {
 
 public:
     QString buildPhoneNumber(const QString& strNumber);
-    QString number();
+    const QString& number();
 
     bool isValid();
 

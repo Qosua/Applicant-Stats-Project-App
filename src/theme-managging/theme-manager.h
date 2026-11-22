@@ -7,28 +7,24 @@
 #include <QVariantList>
 #include <QVariantMap>
 
-class ThemeManager : public QObject {
-
+class ThemeManager : public QObject
+{
     Q_OBJECT
 
     Q_PROPERTY(bool isLightTheme READ isLightTheme WRITE setLightTheme NOTIFY themeChanged)
     bool m_isLightTheme = false;
 
 #ifndef APP_COLOR
-#define APP_COLOR(name, darkValue, lightValue)                                    \
-    Q_PROPERTY(QColor name READ name NOTIFY themeChanged)                         \
-    public:                                                                       \
-    QColor name() const {                                                         \
-    return QColor(m_isLightTheme ? lightValue : darkValue);                       \
-    }                                                                             \
-
-
+#define APP_COLOR(name, darkValue, lightValue) \
+    Q_PROPERTY(QColor name READ name NOTIFY themeChanged) \
+public: \
+    QColor name() const { return QColor(m_isLightTheme ? lightValue : darkValue); }
 
     //  Фоны
     APP_COLOR(backgroundColor,      "#26282b", "#e8edf4")
     APP_COLOR(panelColor,           "#191a1c", "#f2f5fa")
-    APP_COLOR(surfaceColor,         "#232527", "#ffffff")
-    APP_COLOR(surfaceLightColor,    "#2d2e32", "#edf1f7")
+    APP_COLOR(surfaceColor,         "#232527", "#f2f2f2")
+    APP_COLOR(surfaceLightColor,    "#2d2e32", "#e9ecf2")
     APP_COLOR(surfaceHoverColor,    "#2f3033", "#e5ebf4")
     APP_COLOR(surfaceSelectedColor, "#2d374e", "#dce5f3")
     APP_COLOR(chartPlotColor,       "#202022", "#f4f6fa")
@@ -41,11 +37,11 @@ class ThemeManager : public QObject {
     APP_COLOR(chartGridSubColor,  "#222223", "#e7ebf1")
 
     // Акценты
-    APP_COLOR(accentColor,        "#556da3", "#6d89c7")
+    APP_COLOR(accentColor,        "#556da3", "#85a8f2")
     APP_COLOR(accentHoverColor,   "#5f79b8", "#637daf")
     APP_COLOR(accentPressedColor, "#48619c", "#455d91")
     APP_COLOR(accentLightColor,   "#6e8cd1", "#8298c2")
-    APP_COLOR(accentMutedColor,   "#607ab5", "#cfd6e3")
+    APP_COLOR(accentMutedColor,   "#607ab5", "#bac0cc")
 
     // Текст
     APP_COLOR(textPrimaryColor,     "#eeeeee", "#252c38")

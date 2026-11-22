@@ -42,6 +42,7 @@ add_executable(ApplicantStatsProject
         src/windows-controlling/window-manager.h
 
         src/tables-processing/table-parser-bachelor.h
+        src/tables-processing/phone-number.h
         src/applicants-faculty-priority/namespaces.h
         src/applicants-faculty-priority/faculty-direction.h
         src/applicants-faculty-priority/applicant.h
@@ -67,6 +68,7 @@ add_executable(ApplicantStatsProject
         src/windows-controlling/window-manager.cpp
 
         src/tables-processing/table-parser-bachelor.cpp
+        src/tables-processing/phone-number.cpp
         src/applicants-faculty-priority/faculty-direction.cpp
         src/applicants-faculty-priority/applicant.cpp
         src/applicants-faculty-priority/priority-info.cpp
@@ -82,7 +84,7 @@ add_executable(ApplicantStatsProject
         src/theme-managging/theme-manager.h
         src/app-utils/TableConverter.cpp
         src/app-utils/TableConverter.h
-        #########################################################
+#########################################################
 )
 
 qt_add_qml_module(ApplicantStatsProject

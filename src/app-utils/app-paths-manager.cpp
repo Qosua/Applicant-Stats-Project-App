@@ -9,17 +9,17 @@ namespace {
 const QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
 }
 
-const QString AppPathsManager::rootAppDataPath   = appDataPath + "/Applicants-Stats-Project";
-const QString AppPathsManager::dbPath            = appDataPath + "/Applicants-Stats-Project/database.db";
+const QString AppPathsManager::rootAppDataPath = appDataPath + "/Applicants-Stats-Project";
+const QString AppPathsManager::dbPath = appDataPath + "/Applicants-Stats-Project/database.db";
 const QString AppPathsManager::tablesStoragePath = appDataPath + "/Applicants-Stats-Project/data";
-const QString AppPathsManager::cachePath         = appDataPath + "/Applicants-Stats-Project/cache";
-const QString AppPathsManager::logsPath          = appDataPath + "/Applicants-Stats-Project/logs";
-const QString AppPathsManager::downloadPath      = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
+const QString AppPathsManager::cachePath = appDataPath + "/Applicants-Stats-Project/cache";
+const QString AppPathsManager::logsPath = appDataPath + "/Applicants-Stats-Project/logs";
+const QString AppPathsManager::downloadPath = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
 
 AppPathsManager::AppPathsManager() {}
 
-bool AppPathsManager::init() {
-
+bool AppPathsManager::init()
+{
     bool result = true;
 
     if (!QDir().mkpath(rootAppDataPath)) {

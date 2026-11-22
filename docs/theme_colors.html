@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ThemeManager — палитра цветов</title>
+<style>
+  :root { --bg:#f4f5f7; --fg:#1f2328; --card:#ffffff; --line:#dde1e6; --muted:#6b7280; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#16171a; --fg:#e8e8ea; --card:#202225; --line:#34373c; --muted:#9aa0a8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:24px 16px 48px; background:var(--bg); color:var(--fg);
+         font:14px/1.4 -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width:1000px; margin:0 auto; }
+  h1 { font-size:22px; margin:0 0 4px; }
+  .sub { color:var(--muted); margin:0 0 20px; }
+  .toolbar { display:flex; gap:8px; margin-bottom:24px; flex-wrap:wrap; }
+  .toolbar input { flex:1; min-width:200px; padding:8px 12px; border:1px solid var(--line);
+                   border-radius:8px; background:var(--card); color:var(--fg); font:inherit; }
+  h2 { font-size:15px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+       margin:28px 0 10px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:12px; }
+  .item { background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  .pair { display:grid; grid-template-columns:1fr 1fr; height:72px; }
+  .sw { display:flex; flex-direction:column; justify-content:flex-end; padding:6px 10px;
+        font:12px/1.3 ui-monospace, Menlo, Consolas, monospace; cursor:pointer; position:relative; }
+  .sw small { opacity:.7; font-family:inherit; font-size:10px; text-transform:uppercase; }
+  .sw.light-bg { box-shadow: inset 0 0 0 1px rgba(0,0,0,.08); }
+  .sw.dark-bg  { box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+  .name { padding:8px 10px; font:600 13px ui-monospace, Menlo, Consolas, monospace;
+          border-top:1px solid var(--line); }
+  .toast { position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
+           background:#222; color:#fff; padding:8px 14px; border-radius:8px;
+           opacity:0; transition:opacity .2s; pointer-events:none; }
+  .toast.show { opacity:1; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>ThemeManager — палитра цветов</h1>
+  <p class="sub">Слева — тёмная тема, справа — светлая. Клик по цвету копирует HEX.</p>
+  <div class="toolbar"><input id="q" placeholder="Поиск по названию или HEX…"></div>
+  <div id="root"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const groups = [
+  ["Фоны", [
+    ["backgroundColor",      "#26282b", "#e8edf4"],
+    ["panelColor",           "#191a1c", "#f2f5fa"],
+    ["surfaceColor",         "#232527", "#ffffff"],
+    ["surfaceLightColor",    "#2d2e32", "#edf1f7"],
+    ["surfaceHoverColor",    "#2f3033", "#e5ebf4"],
+    ["surfaceSelectedColor", "#2d374e", "#dce5f3"],
+    ["chartPlotColor",       "#202022", "#f4f6fa"],
+    ["cardColor",            "#222326", "#f7f9fc"],
+  ]],
+  ["Границы и разделители", [
+    ["borderColor",        "#323232", "#cbd4e0"],
+    ["dividerColor",       "#404040", "#dce2eb"],
+    ["chartGridMainColor", "#3a3a3c", "#c5cfdd"],
+    ["chartGridSubColor",  "#222223", "#e7ebf1"],
+  ]],
+  ["Акценты", [
+    ["accentColor",        "#556da3", "#6d89c7"],
+    ["accentHoverColor",   "#5f79b8", "#637daf"],
+    ["accentPressedColor", "#48619c", "#455d91"],
+    ["accentLightColor",   "#6e8cd1", "#8298c2"],
+    ["accentMutedColor",   "#607ab5", "#cfd6e3"],
+  ]],
+  ["Текст", [
+    ["textPrimaryColor",     "#eeeeee", "#252c38"],
+    ["textSecondaryColor",   "#cccccc", "#505b6b"],
+    ["textMutedColor",       "#999999", "#788496"],
+    ["textFaintColor",       "#6a6c70", "#a0a9b7"],
+    ["textPlaceholderColor", "#5c6066", "#8994a4"],
+    ["textOnAccentColor",    "#ffffff", "#ffffff"],
+  ]],
+  ["Семантический текст", [
+    ["textSuccessColor",      "#91cd84", "#36865b"],
+    ["textSuccessMutedColor", "#87a586", "#5b9b76"],
+    ["textSuccessDimColor",   "#6a9960", "#83b394"],
+    ["textErrorColor",        "#e89d9d", "#c65f65"],
+    ["textInfoColor",         "#7f9cc4", "#557eae"],
+    ["textInfoMutedColor",    "#6c758a", "#7186a5"],
+    ["textInfoDimColor",      "#557799", "#91a5c1"],
+    ["textPurpleColor",       "#b891a2", "#9673ad"],
+  ]],
+  ["Семантические цвета", [
+    ["successColor", "#5cb180", "#5cb180"],
+  ]],
+  ["Служебные", [
+    ["iconColor",             "#aeaeae", "#65748a"],
+    ["iconAltColor",          "#ced0d6", "#45546b"],
+    ["overlayColor",          "#000000", "#252c38"],
+    ["progressGradientStart", "#4a8a4a", "#4a8a4a"],
+    ["progressGradientEnd",   "#7ab87a", "#7ab87a"],
+  ]],
+  ["Цвета статистики", [
+    ["statisticsPassingColor", "#d4a373", "#d4a373"],
+    ["statisticsMaximumColor", "#7fb37f", "#7fb37f"],
+    ["statisticsMinimumColor", "#c47878", "#c47878"],
+    ["statisticsAverageColor", "#7f9cc4", "#7f9cc4"],
+    ["statisticsMedianColor",  "#a37fc4", "#a37fc4"],
+  ]],
+];
+
+function lum(hex){
+  const n = parseInt(hex.slice(1), 16);
+  const [r,g,b] = [(n>>16)&255, (n>>8)&255, n&255].map(v=>{
+    v/=255; return v<=0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055, 2.4);
+  });
+  return 0.2126*r + 0.7152*g + 0.0722*b;
+}
+const textOn = h => lum(h) > 0.4 ? "#111" : "#fff";
+const edge   = h => lum(h) > 0.8 ? "light-bg" : (lum(h) < 0.03 ? "dark-bg" : "");
+
+const root = document.getElementById("root");
+function render(filter=""){
+  const f = filter.trim().toLowerCase();
+  root.innerHTML = "";
+  for (const [title, items] of groups){
+    const shown = items.filter(([n,d,l]) => !f || n.toLowerCase().includes(f) || d.includes(f) || l.includes(f));
+    if (!shown.length) continue;
+    const h = document.createElement("h2"); h.textContent = title; root.appendChild(h);
+    const grid = document.createElement("div"); grid.className = "grid";
+    for (const [n,d,l] of shown){
+      const el = document.createElement("div"); el.className = "item";
+      el.innerHTML = `
+        <div class="pair">
+          <div class="sw ${edge(d)}" data-hex="${d}" style="background:${d};color:${textOn(d)}"><small>dark</small>${d}</div>
+          <div class="sw ${edge(l)}" data-hex="${l}" style="background:${l};color:${textOn(l)}"><small>light</small>${l}</div>
+        </div>
+        <div class="name">${n}</div>`;
+      grid.appendChild(el);
+    }
+    root.appendChild(grid);
+  }
+}
+render();
+document.getElementById("q").addEventListener("input", e => render(e.target.value));
+
+const toast = document.getElementById("toast");
+root.addEventListener("click", e => {
+  const sw = e.target.closest(".sw"); if (!sw) return;
+  const hex = sw.dataset.hex;
+  try { navigator.clipboard.writeText(hex); } catch(_) {}
+  toast.textContent = "Скопировано: " + hex;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 1200);
+});
+</script>
+</body>
+</html>

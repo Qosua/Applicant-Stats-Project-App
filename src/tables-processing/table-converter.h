@@ -5,7 +5,6 @@
 
 #include "../applicants-faculty-priority/faculty-direction.h"
 
-
 class TableConverter {
 
 public:

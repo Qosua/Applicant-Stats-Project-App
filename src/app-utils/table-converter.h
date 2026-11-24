@@ -9,9 +9,7 @@
 class TableConverter {
 
 public:
-    static void toTableForBot(const QList<FacultyDirection>& data, const QString& tablePath);
-
-
+    static void toTableForBot(const QList<FacultyDirection>& data, const QString& tableDirSavePath);
 
 };
 

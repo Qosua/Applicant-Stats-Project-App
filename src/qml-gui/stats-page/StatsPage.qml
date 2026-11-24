@@ -5,23 +5,21 @@ import QtQuick.Controls
 import ApplicantStatsProjectModule
 
 SplitView {
-
     function getFileName(mode) {
         if (mode === "faculty") {
-            return "FacultyStatsPage.qml"
+            return "FacultyStatsPage.qml";
         } else if (mode === "direction") {
-            return "DirectionStatsPage.qml"
+            return "DirectionStatsPage.qml";
         } else {
-            return "EmptyStatsPlaceholder.qml"
+            return "EmptyStatsPlaceholder.qml";
         }
     }
 
     orientation: Qt.Horizontal
+
     handle: Rectangle {
-
-        implicitWidth: 4
-
         color: SplitHandle.hovered ? Colors.accentColor : "transparent"
+        implicitWidth: 4
 
         Behavior on color {
             ColorAnimation {
@@ -31,23 +29,19 @@ SplitView {
     }
 
     Rectangle {
-
-        SplitView.preferredWidth: parent.width / 4
         SplitView.minimumWidth: parent.width / 10
-
+        SplitView.preferredWidth: parent.width / 4
+        bottomLeftRadius: 10
         color: "transparent"
         topLeftRadius: 10
-        bottomLeftRadius: 10
 
         SplitView {
-
             anchors.fill: parent
             orientation: Qt.Vertical
+
             handle: Rectangle {
-
+                color: SplitHandle.hovered ? Colors.accentColor : "transparent"
                 implicitHeight: 5
-
-                color: SplitHandle.hovered ? 	Colors.panelColor : "transparent"
 
                 Behavior on color {
                     ColorAnimation {
@@ -57,103 +51,106 @@ SplitView {
             }
 
             Rectangle {
-                color: Colors.panelColor
-                border.width: 1
-                border.color: Colors.borderColor
-                topLeftRadius: 10
                 SplitView.fillHeight: tablesList.collapsed
-                SplitView.preferredHeight: parent.height / 2
                 SplitView.minimumHeight: parent.height / 10
+                SplitView.preferredHeight: parent.height / 2
+                border.color: Colors.borderColor
+                border.width: 1
+                color: Colors.panelColor
+                topLeftRadius: 10
 
                 FacultyTreeView {
                     anchors.fill: parent
                     anchors.margins: 8
 
-                    onDirectionSelected: (idx) => {
-                        detailLoader.mode = "direction"
-                        detailLoader.payload = {sourceIndex: idx}
+                    onDirectionSelected: idx => {
+                        detailLoader.mode = "direction";
+                        detailLoader.payload = {
+                            sourceIndex: idx
+                        };
                     }
-                    onFacultySelected: (name) => {
-                        detailLoader.mode = "faculty"
-                        detailLoader.payload = {facultyName: name}
+                    onFacultySelected: name => {
+                        detailLoader.mode = "faculty";
+                        detailLoader.payload = {
+                            facultyName: name
+                        };
                     }
                     onSelectionCleared: {
-                        detailLoader.mode = "none"
-                        detailLoader.payload = null
+                        detailLoader.mode = "none";
+                        detailLoader.payload = null;
                     }
                 }
             }
             TablesList {
                 id: tablesList
-                color: Colors.panelColor
-                border.width: 1
-                border.color: tablesList.dropped ? Colors.accentColor :  Colors.borderColor
-                bottomLeftRadius: 10
 
-                SplitView.preferredHeight: collapsed ? collapsedHeight : parent.height / 2
-                SplitView.minimumHeight: collapsed ? collapsedHeight : parent.height / 10
                 SplitView.maximumHeight: collapsed ? collapsedHeight : Number.POSITIVE_INFINITY
-
+                SplitView.minimumHeight: collapsed ? collapsedHeight : parent.height / 10
+                SplitView.preferredHeight: collapsed ? collapsedHeight : parent.height / 2
+                border.color: tablesList.dropped ? Colors.accentColor : Colors.borderColor
+                border.width: 1
+                bottomLeftRadius: 10
+                color: Colors.panelColor
             }
         }
     }
-
     Rectangle {
-
-        SplitView.preferredWidth: parent.width / (3 / 4)
         SplitView.minimumWidth: parent.width / 10
-        color: Colors.panelColor
-        border.color: Colors.borderColor; border.width: 1
-        topRightRadius: 10
+        SplitView.preferredWidth: parent.width / (3 / 4)
+        border.color: Colors.borderColor
+        border.width: 1
         bottomRightRadius: 10
         clip: true
+        color: Colors.panelColor
+        topRightRadius: 10
 
         Rectangle {
             id: searchBar
+
             anchors.left: parent.left
+            anchors.margins: 5
             anchors.right: parent.right
             anchors.top: parent.top
-            anchors.margins: 5
-
-            visible: false
-
             height: visible ? 40 : 0
-
+            visible: false
         }
-
         Loader {
             id: detailLoader
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.bottom: parent.bottom
-            anchors.top: searchBar.bottom
-            anchors.margins: 1
 
             property string mode: "none"
             property var payload: null
 
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+            anchors.margins: 1
+            anchors.right: parent.right
+            anchors.top: searchBar.bottom
             source: getFileName(mode)
 
-            onLoaded: if (item) item.payload = payload
-            onPayloadChanged: if (item) item.payload = payload
+            onLoaded: if (item)
+                item.payload = payload
+            onPayloadChanged: if (item)
+                item.payload = payload
 
             Connections {
-                target: statsPageModel
-
                 function onLoadDirectionPage(index) {
-                    detailLoader.mode = "direction"
-                    detailLoader.payload = {sourceIndex: index}
+                    detailLoader.mode = "direction";
+                    detailLoader.payload = {
+                        sourceIndex: index
+                    };
                 }
-
                 function onLoadFacultyPage(name) {
-                    detailLoader.mode = "faculty"
-                    detailLoader.payload = {facultyName: name}
+                    detailLoader.mode = "faculty";
+                    detailLoader.payload = {
+                        facultyName: name
+                    };
+                }
+                function onNothingToLoad() {
+                    detailLoader.mode = "none";
+                    detailLoader.payload = null;
                 }
 
-                function onNothingToLoad() {
-                    detailLoader.mode = "none"
-                    detailLoader.payload = null
-                }
+                target: statsPageModel
             }
         }
     }

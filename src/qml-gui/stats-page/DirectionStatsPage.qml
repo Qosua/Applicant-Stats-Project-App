@@ -25,7 +25,7 @@ Item {
         target: statsPageModel
     }
     ScrollView {
-
+        id: scrollView
         anchors.fill: parent
         anchors.margins: 16
         clip: true
@@ -117,8 +117,7 @@ Item {
             //score graph and applicants list
             SplitView {
                 Layout.fillWidth: true
-                //Layout.preferredHeight: (parent.height / 2) + 80
-                Layout.preferredHeight: 420
+                Layout.preferredHeight: (scrollView.height / 2) + 40
                 anchors.margins: 2
                 spacing: 4
 
@@ -471,11 +470,6 @@ Item {
                     }
                 }
             }
-          /*  Item {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-            }
-            */
 
         }
     }

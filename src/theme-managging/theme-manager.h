@@ -23,7 +23,7 @@ public: \
     //  Фоны
     APP_COLOR(backgroundColor,      "#26282b", "#e8edf4")
     APP_COLOR(panelColor,           "#191a1c", "#f2f5fa")
-    APP_COLOR(surfaceColor,         "#232527", "#f2f2f2")
+    APP_COLOR(surfaceColor,         "#232527", "#eaedf3")
     APP_COLOR(surfaceLightColor,    "#2d2e32", "#e9ecf2")
     APP_COLOR(surfaceHoverColor,    "#2f3033", "#e5ebf4")
     APP_COLOR(surfaceSelectedColor, "#2d374e", "#dce5f3")

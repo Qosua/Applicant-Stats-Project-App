@@ -1,5 +1,4 @@
 #include "tree-view-model.h"
-#include "../app-utils/table-converter.h"
 
 TreeViewModel::TreeViewModel(QObject *parent)
     : QAbstractItemModel(parent), m_rootNode(new TreeNode) {}

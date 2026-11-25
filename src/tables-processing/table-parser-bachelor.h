@@ -3,14 +3,14 @@
 
 #include <xlsxdocument.h>
 
+#include <expected>
+#include <memory>
 #include <QDebug>
 #include <QFile>
 #include <QHash>
 #include <QList>
 #include <QMap>
 #include <QTextStream>
-#include <expected>
-#include <memory>
 
 #include "phone-number.h"
 
@@ -24,25 +24,28 @@ enum class TableParserError {
 };
 
 namespace {
-const char* parseErrorName(TableParserError err) {
+const char* parseErrorName(TableParserError err)
+{
     switch (err) {
-        case TableParserError::noSuchColumn: return "noSuchColumn";
-        case TableParserError::valueError:   return "valueError";
-        case TableParserError::noError:      return "noError";
+    case TableParserError::noSuchColumn:
+        return "noSuchColumn";
+    case TableParserError::valueError:
+        return "valueError";
+    case TableParserError::noError:
+        return "noError";
     }
     return "unknown";
 }
-}
+} // namespace
 
 typedef std::expected<QVariant, TableParserError> ParseResult;
 
-class TableParserBachelor {
-
+class TableParserBachelor
+{
 public:
     void setTablePath(const QString& path);
     void parseTable();
-    std::shared_ptr<QList<Applicant>> getApplicants(ApplicantsFilterFlags flag,
-                                                    StudyType priorityToDelete) const;
+    std::shared_ptr<QList<Applicant>> getApplicants(ApplicantsFilterFlags flag, StudyType priorityToDelete) const;
 
     void readColumnNamesFromDB();
     void setEntryCommisionInfo(const QString& entryCommisionName, bool isBachelor, int year);
@@ -66,4 +69,4 @@ public:
     PhoneNumber phoneNumberBasement;
 };
 
-#endif  // TABLEPARSERBACHELOR_H
+#endif // TABLEPARSERBACHELOR_H

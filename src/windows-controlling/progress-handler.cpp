@@ -1,11 +1,16 @@
 #include "progress-handler.h"
 
-ProgressHandler::ProgressHandler(QObject* parent) : QObject{parent} {}
+ProgressHandler::ProgressHandler(QObject* parent)
+    : QObject{parent}
+{}
 
-void ProgressHandler::addProgressValue(const double& value) { setProgress(getProgress() + value); }
+void ProgressHandler::addProgressValue(const double& value)
+{
+    setProgress(getProgress() + value);
+}
 
-void ProgressHandler::setProgress(const double& newProgress) {
-
+void ProgressHandler::setProgress(const double& newProgress)
+{
     if (processProgress == newProgress)
         return;
 
@@ -15,24 +20,40 @@ void ProgressHandler::setProgress(const double& newProgress) {
     emit progressChanged(processProgress);
 }
 
-double ProgressHandler::getProgress() const { return processProgress; }
+double ProgressHandler::getProgress() const
+{
+    return processProgress;
+}
 
-bool ProgressHandler::isActive() const { return active; }
+bool ProgressHandler::isActive() const
+{
+    return active;
+}
 
-void ProgressHandler::setProcessName(const QString& name) {
-
+void ProgressHandler::setProcessName(const QString& name)
+{
     currentProcessName = name;
     emit processChanged(currentProcessName);
 }
 
-void ProgressHandler::setProcessMessage(const QString& message) {
-
+void ProgressHandler::setProcessMessage(const QString& message)
+{
     currentProcessMessage = message;
-    emit this->message(currentProcessMessage);
+    emit this->messageChanged(currentProcessMessage);
 }
 
-QString ProgressHandler::getProcessName() const { return currentProcessName; }
+QString ProgressHandler::getProcessName() const
+{
+    return currentProcessName;
+}
 
-QString ProgressHandler::getProcessMessage() const { return currentProcessMessage; }
+QString ProgressHandler::getProcessMessage() const
+{
+    return currentProcessMessage;
+}
 
-void ProgressHandler::setActive(const bool& arg) { active = arg; }
+void ProgressHandler::setActive(const bool& arg)
+{
+    active = arg;
+    emit this->activeChanged(active);
+}

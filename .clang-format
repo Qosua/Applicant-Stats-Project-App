@@ -84,7 +84,7 @@ PenaltyBreakFirstLessLess: 400
 PenaltyBreakString: 600
 PenaltyExcessCharacter: 50
 PenaltyReturnTypeOnItsOwnLine: 300
-PointerAlignment: Right
+PointerAlignment: Left
 ReflowComments: false
 SortIncludes: CaseSensitive
 SortUsingDeclarations: true
@@ -99,6 +99,6 @@ SpacesInContainerLiterals: false
 SpacesInCStyleCastParentheses: false
 SpacesInParentheses: false
 SpacesInSquareBrackets: false
-Standard: c++17
+Standard: c++20
 TabWidth: 4
 UseTab: Never

@@ -1,13 +1,14 @@
 #ifndef MAGICHAT_H
 #define MAGICHAT_H
 
-#include <QFile>
 #include <memory>
+#include <QFile>
 
 #include "../applicants-faculty-priority/applicant.h"
 #include "../applicants-faculty-priority/faculty-direction.h"
 
-class MagicHat {
+class MagicHat
+{
 public:
     MagicHat();
 
@@ -28,4 +29,4 @@ private:
     QList<Applicant> m_uncountedApplicants;
     std::shared_ptr<QList<FacultyDirection>> m_facultyCells;
 };
-#endif  // MAGICHAT_H
+#endif // MAGICHAT_H

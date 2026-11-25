@@ -24,33 +24,28 @@
 /// @param TreeViewModel& treeViewModel
 /// @param StatsPageModel& statsPageModel
 /// @return void
-void connectSignals(QmlHelper& qmlHelper, CacheManager& cacheManager, TreeViewModel& treeViewModel,
-		    StatsPageModel& statsPageModel) {
-
+void connectSignals(
+    QmlHelper& qmlHelper, CacheManager& cacheManager, TreeViewModel& treeViewModel, StatsPageModel& statsPageModel)
+{
     // Сигнал поступает из qml с информацией нахождении файла таблицы которую надо обработать в CacheManager
     // где будет дальше решено что делать с таблицей
-    QObject::connect(&qmlHelper, &QmlHelper::sendSignalToProceedTable, &cacheManager,
-                     &CacheManager::processTable);
+    QObject::connect(&qmlHelper, &QmlHelper::sendSignalToProceedTable, &cacheManager, &CacheManager::processTable);
 
     // После успешной обработки таблицы отправляется сигнал sendProceededData с результатом обработки.
     // Результат устанавливается в модель древесного представления
-    QObject::connect(&cacheManager, &CacheManager::sendProceededData, &treeViewModel,
-                     &TreeViewModel::setFaculties);
+    QObject::connect(&cacheManager, &CacheManager::sendProceededData, &treeViewModel, &TreeViewModel::setFaculties);
 
     // После успешной обработки таблицы отправляется сигнал sendProceededData с результатом обработки.
     // Результат устанавливается в модель страниц статистики
-    QObject::connect(&cacheManager, &CacheManager::sendProceededData, &statsPageModel,
-		     &StatsPageModel::setFaculties);
-
-
+    QObject::connect(&cacheManager, &CacheManager::sendProceededData, &statsPageModel, &StatsPageModel::setFaculties);
 }
 
 /// Метод нужен для первичной инициализации CacheManager в другом потоке
 /// @param QThread& thread объект потока в который передаём CacheManager
 /// @param CacheManager& cacheManager сам CacheManager
 /// @return void
-void moveToThread(QThread& thread, CacheManager& cacheManager) {
-
+void moveToThread(QThread& thread, CacheManager& cacheManager)
+{
     cacheManager.moveToThread(&thread);
 
     // Инициализация объекта в потоке после старта самого потока
@@ -59,17 +54,19 @@ void moveToThread(QThread& thread, CacheManager& cacheManager) {
     thread.start();
 }
 
-int main(int argc, char* argv[]) {
-
+int main(int argc, char* argv[])
+{
     QApplication app(argc, argv);
 
     //----Системные утилиты------------------------------------------
     // менеджер путей
-    if (!AppPathsManager::init()) return 1;
+    if (!AppPathsManager::init())
+        return 1;
     // менеджер БД
-    if (!DataBaseManager::instance().init()) return 1;
-    
-    //----Система логирования----------------------------------------
+    if (!DataBaseManager::instance().init())
+        return 1;
+
+    // Система логирования
     Logger::initLog();
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
@@ -79,15 +76,15 @@ int main(int argc, char* argv[]) {
     QThread cacheThread;
 
     //----Компоненты логики и представления--------------------------
-    QmlHelper                qmlHelper;       // коллекция методов для qml (не объеденнёных в одну логическую группу)
-    CacheManager             cacheManager;    // менеджер кэша и обработки таблиц
-    TablesListModel          tablesListModel; // модель списка таблиц для qml
-    QSortFilterProxyModel    proxyModel;      // таже модель что и выше, но с возможностью сортировки содержимого
-    TreeViewModel            treeViewModel;   // модель древесного представления иерархии факультетов и направлений для qml
-    StatsPageModel           statsPageModel;  // модель страниц статистики
-    EntryCommisionsListModel entryModel;      // модель списка доступных правил приёма (приёмных коммисий)
-    ProgressHandler          progressHandler; // контролер состояния прогресс бара
-    ThemeManager             themeManager;    // мэнэджер визуальной темы
+    QmlHelper qmlHelper;                 // коллекция методов для qml (не объеденнёных в одну логическую группу)
+    CacheManager cacheManager;           // менеджер кэша и обработки таблиц
+    TablesListModel tablesListModel;     // модель списка таблиц для qml
+    QSortFilterProxyModel proxyModel;    // таже модель что и выше, но с возможностью сортировки содержимого
+    TreeViewModel treeViewModel;         // модель древесного представления иерархии факультетов и направлений для qml
+    StatsPageModel statsPageModel;       // модель страниц статистики
+    EntryCommisionsListModel entryModel; // модель списка доступных правил приёма (приёмных коммисий)
+    ProgressHandler progressHandler;     // контролер состояния прогресс бара
+    ThemeManager themeManager;           // мэнэджер визуальной темы
 
     qmlHelper.setAppVersion("26.01");
 

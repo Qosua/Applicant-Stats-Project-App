@@ -2,26 +2,29 @@
 #define NAMESPACES_H
 
 enum class ApplicantsFilterFlags {
+    Uninitialized = 0,
     All,
     AdmissionsTrue,
     AdmissionsFalse,
-    Error = 9999911,
+    Error,
 };
 
 enum class StudyType {
+    Uninitialized = 0,
     NonBudget,
     Budget,
     SpecialRight,
     Kvot,
     CompanySponsor,
-    Error = 9999922,
+    Error,
 };
 
 enum class StudyForm {
+    Uninitialized = 0,
     Personal,
     PersonalNotPersonal,
     NotPersonal,
-    Error = 9999933,
+    Error,
 };
 
 #endif // NAMESPACES_H

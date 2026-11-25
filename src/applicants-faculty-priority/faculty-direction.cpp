@@ -1,103 +1,132 @@
 #include "faculty-direction.h"
 
-FacultyDirection::FacultyDirection() {}
-
-FacultyDirection::FacultyDirection(const FacultyDirection &copy) { *this = copy; }
-
-void FacultyDirection::operator=(const FacultyDirection &copy) {
-
-    m_capacity = copy.m_capacity;
-    m_name = copy.m_name;
-    m_code = copy.m_code;
-    m_studyForm = copy.m_studyForm;
-    m_studyType = copy.m_studyType;
-    m_pool = copy.m_pool;
-    m_division = copy.m_division;
+const QString& FacultyDirection::name() const
+{
+    return m_name;
 }
 
-QString FacultyDirection::name() const { return m_name; }
+void FacultyDirection::setName(const QString& newName)
+{
+    m_name = newName;
+}
 
-void FacultyDirection::setName(const QString &newName) { m_name = newName; }
+const QString& FacultyDirection::division() const
+{
+    return m_division;
+}
 
-QString FacultyDirection::division() const { return m_division; }
+void FacultyDirection::setDivision(const QString& newName)
+{
+    m_division = newName;
+}
 
-void FacultyDirection::setDivision(const QString &newName) { m_division = newName; }
+int FacultyDirection::capacity() const
+{
+    return m_capacity;
+}
 
-int FacultyDirection::capacity() const { return m_capacity; }
+void FacultyDirection::setCapacity(int newCapacity)
+{
+    m_capacity = newCapacity;
+}
 
-void FacultyDirection::setCapacity(int newCapacity) { m_capacity = newCapacity; }
+const QString& FacultyDirection::code() const
+{
+    return m_code;
+}
 
-QString FacultyDirection::code() const { return m_code; }
+void FacultyDirection::setCode(const QString& newCode)
+{
+    m_code = newCode;
+}
 
-void FacultyDirection::setCode(const QString &newCode) { m_code = newCode; }
+const StudyForm& FacultyDirection::studyForm() const
+{
+    return m_studyForm;
+}
 
-StudyForm FacultyDirection::studyForm() const { return m_studyForm; }
+void FacultyDirection::setStudyForm(const StudyForm& newStudyForm)
+{
+    m_studyForm = newStudyForm;
+}
 
-void FacultyDirection::setStudyForm(const StudyForm &newStudyForm) { m_studyForm = newStudyForm; }
+const StudyType& FacultyDirection::studyType() const
+{
+    return m_studyType;
+}
 
-StudyType FacultyDirection::studyType() const { return m_studyType; }
+void FacultyDirection::setStudyType(const StudyType& newType)
+{
+    m_studyType = newType;
+}
 
-void FacultyDirection::setStudyType(const StudyType &newType) { m_studyType = newType; }
+const QList<QPair<PriorityInfo, Applicant>>& FacultyDirection::pool() const
+{
+    return m_pool;
+}
 
-QList<QPair<PriorityInfo, Applicant>> FacultyDirection::pool() const { return m_pool; }
-
-void FacultyDirection::setPool(const QList<QPair<PriorityInfo, Applicant>> &newPool) {
+void FacultyDirection::setPool(const QList<QPair<PriorityInfo, Applicant>>& newPool)
+{
     m_pool = newPool;
 }
 
-void FacultyDirection::addToPool(const PriorityInfo &priority, const Applicant &applicant) {
-
+void FacultyDirection::addToPool(const PriorityInfo& priority, const Applicant& applicant)
+{
     m_pool.append({priority, applicant});
 
-    std::sort(m_pool.begin(), m_pool.end(),
-              [](const QPair<PriorityInfo, Applicant> &priority1,
-                 const QPair<PriorityInfo, Applicant> &priority2) {
-	          return (priority1.first <= priority2.first);
-              });
+    std::sort(
+        m_pool.begin(),
+        m_pool.end(),
+        [](const QPair<PriorityInfo, Applicant>& priority1, const QPair<PriorityInfo, Applicant>& priority2) {
+            return (priority1.first <= priority2.first);
+        });
 }
 
-bool FacultyDirection::isAbleToAdd(PriorityInfo priority) {
-
+bool FacultyDirection::isAbleToAdd(const PriorityInfo& priority) const
+{
     if (m_capacity <= 0)
-	return false;
+        return false;
 
-    if (m_name != priority.name() or m_code != priority.code()
-        or m_studyForm != priority.studyForm() or m_studyType != priority.studyType()) {
-	// qDebug() << "PRIORITY IN WRONG GROUP" << __FILE__ << ":" << __LINE__;
-	return false;
+    if (m_name != priority.name() or m_code != priority.code() or m_studyForm != priority.studyForm()
+        or m_studyType != priority.studyType()) {
+        // qDebug() << "PRIORITY IN WRONG GROUP" << __FILE__ << ":" << __LINE__;
+        return false;
     }
 
     if (m_pool.size() == 0)
-	return true;
+        return true;
 
     // if(m_pool.first().first == priority)
     //     return false;
 
     if (m_pool.size() >= m_capacity and m_pool.first().first > priority)
-	return false;
+        return false;
     else
-	return true;
+        return true;
 }
 
-QPair<PriorityInfo, Applicant *> FacultyDirection::getUnsuitableApplicant() {
-
+QPair<PriorityInfo, Applicant*> FacultyDirection::getUnsuitableApplicant()
+{
     if (m_pool.size() > m_capacity) {
+        Applicant* applicant = new Applicant;
+        *applicant = m_pool.first().second;
 
-	Applicant *applicant = new Applicant;
-	*applicant = m_pool.first().second;
+        PriorityInfo temp = m_pool.first().first;
+        m_pool.removeFirst();
 
-	PriorityInfo temp = m_pool.first().first;
-	m_pool.removeFirst();
-
-	return {temp, applicant};
+        return {temp, applicant};
     }
 
     return {PriorityInfo(), nullptr};
 }
 
-int FacultyDirection::getPoolSize() { return m_pool.size(); }
+int FacultyDirection::getPoolSize() const
+{
+    return m_pool.size();
+}
 
-QDataStream &operator<<(QDataStream &out, const FacultyDirection &p) {
+QDataStream& operator<<(QDataStream& out, const FacultyDirection& p)
+{
     out << p.m_capacity;
     out << p.m_name;
     out << p.m_code;
@@ -107,7 +136,8 @@ QDataStream &operator<<(QDataStream &out, const FacultyDirection &p) {
     out << p.m_division;
     return out;
 }
-QDataStream &operator>>(QDataStream &in, FacultyDirection &p) {
+QDataStream& operator>>(QDataStream& in, FacultyDirection& p)
+{
     in >> p.m_capacity;
     in >> p.m_name;
     in >> p.m_code;

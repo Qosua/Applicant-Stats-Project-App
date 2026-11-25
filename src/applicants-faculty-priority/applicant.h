@@ -1,11 +1,6 @@
 #ifndef APPLICANT_H
 #define APPLICANT_H
 
-#include <algorithm>
-#include <QList>
-#include <QObject>
-#include <QString>
-
 #include "namespaces.h"
 #include "priority-info.h"
 #include "qdebug.h"
@@ -13,13 +8,11 @@
 class Applicant
 {
 public:
-    Applicant();
-    Applicant(const Applicant& copy);
-    void operator=(const Applicant& copy);
+    Applicant() noexcept = default;
 
     bool operator==(const Applicant& copy) const;
 
-    const QList<PriorityInfo>& priorities();
+    [[nodiscard]] const QList<PriorityInfo>& priorities();
     void setPriorities(const QList<PriorityInfo>& newPriorities);
     void addPriority(const PriorityInfo& info);
     void deletePriority(StudyType flag);

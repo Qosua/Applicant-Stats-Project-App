@@ -1,12 +1,5 @@
 #include "applicant.h"
 
-Applicant::Applicant() {}
-
-Applicant::Applicant(const Applicant& copy)
-{
-    *this = copy;
-}
-
 int Applicant::id() const
 {
     return m_id;
@@ -117,15 +110,6 @@ QDataStream& operator>>(QDataStream& in, Applicant& p)
     in >> p.m_phoneNumber;
     in >> p.m_FIO;
     return in;
-}
-
-void Applicant::operator=(const Applicant& copy)
-{
-    m_id = copy.m_id;
-    m_priorities = copy.m_priorities;
-    m_FIO = copy.m_FIO;
-    m_email = copy.m_email;
-    m_phoneNumber = copy.m_phoneNumber;
 }
 
 bool Applicant::operator==(const Applicant& copy) const

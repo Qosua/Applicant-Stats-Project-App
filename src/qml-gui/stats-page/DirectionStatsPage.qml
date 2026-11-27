@@ -46,7 +46,7 @@ Item {
                 spacing: 4
 
                 Label {
-                    color: Colors.textMutedColor
+                    color: Colors.textSecondaryColor
                     font.pixelSize: 16
                     font.weight: Font.Medium
                     text: "Факультет:"

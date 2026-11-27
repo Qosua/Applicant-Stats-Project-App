@@ -37,27 +37,27 @@ public: \
     }\
 
     //  Фоны
-    APP_COLOR(backgroundColor,      "#26282b", "#e8edf4", "#F7F8FA")
+    APP_COLOR(backgroundColor,      "#26282b", "#e8edf4", "#e3e4e6")
     APP_COLOR(panelColor,           "#191a1c", "#f2f5fa", "#FFFFFF")
-    APP_COLOR(surfaceColor,         "#232527", "#eaedf3", "#FFFFFF")
-    APP_COLOR(surfaceLightColor,    "#2d2e32", "#e9ecf2", "#F5F6F8")
-    APP_COLOR(surfaceHoverColor,    "#2f3033", "#e5ebf4", "#EFF1F5")
+    APP_COLOR(surfaceColor,         "#232527", "#eaedf3", "#e8e9eb")
+    APP_COLOR(surfaceLightColor,    "#2d2e32", "#e9ecf2", "#edeef0")
+    APP_COLOR(surfaceHoverColor,    "#2f3033", "#e5ebf4", "#ebedf0")
     APP_COLOR(surfaceSelectedColor, "#2d374e", "#dce5f3", "#E5EDFA")
     APP_COLOR(chartPlotColor,       "#202022", "#f4f6fa", "#FFFFFF")
     APP_COLOR(cardColor,            "#222326", "#f7f9fc", "#FFFFFF")
 
     //  Границы и разделители
-    APP_COLOR(borderColor,        "#323232", "#cbd4e0", "#DFE2E8")
-    APP_COLOR(dividerColor,       "#404040", "#dce2eb", "#E8EAF0")
+    APP_COLOR(borderColor,        "#323232", "#cbd4e0", "#c4c7cc")
+    APP_COLOR(dividerColor,       "#404040", "#dce2eb", "#d2d3d9")
     APP_COLOR(chartGridMainColor, "#3a3a3c", "#c5cfdd", "#D9DDE5")
     APP_COLOR(chartGridSubColor,  "#222223", "#e7ebf1", "#EFF1F5")
 
     // Акценты
-    APP_COLOR(accentColor,        "#556da3", "#85a8f2", "#3574F0")
+    APP_COLOR(accentColor,        "#556da3", "#85a8f2", "#3778fa")
     APP_COLOR(accentHoverColor,   "#5f79b8", "#637daf", "#2865D8")
     APP_COLOR(accentPressedColor, "#48619c", "#455d91", "#1F55C2")
     APP_COLOR(accentLightColor,   "#6e8cd1", "#8298c2", "#6695F5")
-    APP_COLOR(accentMutedColor,   "#607ab5", "#bac0cc", "#E5EDFA")
+    APP_COLOR(accentMutedColor,   "#607ab5", "#bac0cc", "#bac0cc")
 
     // Текст
     APP_COLOR(textPrimaryColor,     "#eeeeee", "#252c38", "#1F2329")
@@ -82,7 +82,7 @@ public: \
 
     // Служебные
     APP_COLOR(iconColor,             "#aeaeae", "#65748a", "#6F7785")
-    APP_COLOR(iconAltColor,          "#ced0d6", "#45546b", "#9BA2AE")
+    APP_COLOR(iconAltColor,          "#ced0d6", "#45546b", "#1a1a1a")
     APP_COLOR(overlayColor,          "#000000", "#252c38", "#66000000")
     APP_COLOR(progressGradientStart, "#4a8a4a", "#4a8a4a", "#3D965D")
     APP_COLOR(progressGradientEnd,   "#7ab87a", "#7ab87a", "#72B985")
